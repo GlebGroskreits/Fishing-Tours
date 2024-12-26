@@ -3,9 +3,9 @@ import './Authorization.scss';
 
 const Authorization = () => {
     return (
-       <div>
-            Authorization
-       </div>
+        <main>
+            sdfsdf
+        </main>
     );
 }
 
