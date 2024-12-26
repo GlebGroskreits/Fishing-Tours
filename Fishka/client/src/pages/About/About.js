@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './About.scss';
 import { AboutBC } from "../../utils/images";
-import { CardYears } from "../../utils/components";
+import { CardYears, HeaderSection } from "../../utils/components";
 
 const About = () => {
 
@@ -17,9 +17,14 @@ const About = () => {
                 }
                 return response.json();
             })
-            .then(data => setCards(data.cards))
-            .catch(error => console.error('Произошла проблема с операцией fetch:', error));
-            
+            .then(data => {
+                setCards(data.cards);
+                // Устанавливаем первый элемент в selectYear, если cards не пустой
+                if (data.cards.length > 0) {
+                    setSelectYear(data.cards[0].items);
+                }
+            })
+        .catch(error => console.error('Произошла проблема с операцией fetch:', error));
     }, []);
 
     const setIndexValue = (index) => {
@@ -35,8 +40,7 @@ const About = () => {
                 <p className="text_mln_f26_l26">ensuring safety, passion for fishing</p>
             </section>
             <section className="main_years">
-                <></>
-               
+                <HeaderSection textUp={"Timeline"} textLow={"major events"} />
                 <div className="main_years_card">
                     {selectYear.map((year, index) => (
                         <CardYears key={index} textUp={year.textUp} textLow={year.textLow}/>
@@ -44,9 +48,9 @@ const About = () => {
                 </div>
                 <div className="years_paggination">
                     {cards.map((card, index) => (
-                        <div className="yp">
+                        <div className="yp" key={index} onClick={() => setIndexValue(index)}>
                             <p className="text_mln_f18_l18">{card.year}</p>
-                            <span className={`${selectIndex == index ? 'dot active' : 'dot'}`} onClick={() => setIndexValue(index)}></span>
+                            <span className={`${selectIndex == index ? 'dot active' : 'dot'}`}></span>
                         </div>
                     ))}
                 </div>

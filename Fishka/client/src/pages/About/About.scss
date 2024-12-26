@@ -15,10 +15,21 @@
 }
 
 .main_years{
+    @extend .container_center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 0px;
+    box-sizing: border-box;
+
+    >.header_section{
+        padding: 0 100px;
+        box-sizing: border-box
+    }
+
     .main_years_card{
         @extend .container_center;
         gap: 40px;
-        padding: 20px 10px;
+        padding: 20px 100px;
         box-sizing: border-box;
         width: 100%;
         flex-wrap: wrap;
@@ -27,7 +38,7 @@
     .years_paggination{
         @extend .container_center;
         gap: 30px;
-        
+
         .yp{
             align-items: center;
             height: 38px;
@@ -35,6 +46,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            cursor: pointer;
 
             >p{
                 color: $text_decoration_black;
@@ -69,4 +81,12 @@
         }
     }
 
+}
+
+@media(max-width: 509px){
+    .main_years{
+        .main_years_card{
+            padding: 20px 10px;
+        }
+    }
 }
