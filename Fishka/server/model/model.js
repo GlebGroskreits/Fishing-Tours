@@ -3,7 +3,7 @@ const {DataTypes} = require('sequelize')
 
 const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    role: {type: DataTypes.STRING(20), defaultValue: "client    ", allowNull: true},
+    role: {type: DataTypes.STRING(20), defaultValue: "client", allowNull: true},
     email: {type: DataTypes.STRING(45), unique: true, allowNull: true},
     password: {type: DataTypes.STRING, allowNull: true},
 }, {

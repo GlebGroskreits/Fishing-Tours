@@ -5,7 +5,7 @@ const Controller = require("./controller");
 
 class UserController extends Controller {
     async registration(req, res) {
-        const { role, email, password, name,surname,patronymic,birthday,telephone, } = req.body;         //исправить валидацию
+        const { role, email, password, name, surname,patronymic,birthday,telephone } = req.body;         //исправить валидацию
         const userData = { role, email, password };
         const personalData = { name, surname, patronymic, birthday, telephone };
 

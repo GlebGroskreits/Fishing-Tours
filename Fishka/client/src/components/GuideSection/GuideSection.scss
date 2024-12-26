@@ -1,0 +1,70 @@
+@import '../../styles/global';
+
+.main_guide{
+    @extend .container_center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding: 25px 100px 50px 100px;
+    box-sizing: border-box;
+
+    >img{
+        height: 300px;
+        width: 300px;
+        border-radius: 10px;
+    }
+
+    .guide_text{
+        max-width: 400px;
+        >p:nth-of-type(1){
+            margin: 15px 0;
+            color: $text_decoration_black
+        }
+
+        >p:nth-of-type(2){
+            color: rgba($text_decoration_black, 0.8);
+        }
+
+        >p:nth-of-type(3){
+            margin-top: 30px;
+            color: rgba($text_decoration_black, 0.6);
+        }
+    }
+
+    .guide_paggination{
+        @extend .container_center;
+        gap: 30px;
+        width: 180px;
+        height: 60px;
+        border-radius: 10px;
+        background-color: $gray_e6;
+
+        >img{
+            height: 16px;
+            width: 16px;
+        }
+
+        >img:nth-of-type(1){
+            transform: rotate(180deg);
+        }
+    }
+}
+
+@media(max-width: 999px){
+    .main_guide{
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        padding: 25px 10px 50px 10px;
+    
+        .guide_text{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+            >p:nth-of-type(3){
+                text-align: center;
+            }
+        }
+    }    
+}

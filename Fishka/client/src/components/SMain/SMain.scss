@@ -1,1 +1,10 @@
 @import '../../styles/global';
+
+.main {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; // Плавный переход для opacity
+}
+
+.main.visible {
+    opacity: 1; // Полная видимость
+}

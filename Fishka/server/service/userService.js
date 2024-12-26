@@ -20,7 +20,8 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3);
 
         const user = await User.create({ ...userData, password: hashPassword });
-        const personal = await User_Personal({...personalData, where: {id_user: user.id}});
+
+        const personal = await User_Personal.create({ ...personalData, id_user: user.id });
 
         const userDTO = new UserDTO(user);
         const tokens = tokenService.generateTokens({ ...userDTO });

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './About.scss';
 import { AboutBC } from "../../utils/images";
-import { CardYears, HeaderSection, MapClick } from "../../utils/components";
+import { CardYears, HeaderSection, MapClick, GuideSection   } from "../../utils/components";
+import { useDispatch, useSelector } from 'react-redux';
+import { getGuide } from '../../store/slices/guideSlice';
 
 const About = () => {
-
+    const dispatch = useDispatch();
+    
     const [cards, setCards] = useState([]);
     const [selectIndex, setIndex] = useState(0);
     const [selectYear, setSelectYear] = useState([])
@@ -25,8 +28,12 @@ const About = () => {
                 }
             })
         .catch(error => console.error('Произошла проблема с операцией fetch:', error));
+
+        dispatch(getGuide());
+
     }, []);
 
+    
     const setIndexValue = (index) => {
         setIndex(index)
         setSelectYear(cards[index].items)
@@ -36,7 +43,7 @@ const About = () => {
        <>
             <section className="main_image">
                 <img src={AboutBC} alt="bcMain" className="responsive_image"/>
-                <p className="text_mnt_f46_l50">We respect both our customers and nature</p>
+                <p className="text_mnt_f46_l50 tabout">We respect both our customers and nature</p>
                 <p className="text_mln_f26_l26">ensuring safety, passion for fishing</p>
             </section>
             <section className="main_years">
@@ -58,6 +65,7 @@ const About = () => {
             <section className="main_map">
                 <MapClick />
             </section>
+            <GuideSection />
        </>
     );
 }

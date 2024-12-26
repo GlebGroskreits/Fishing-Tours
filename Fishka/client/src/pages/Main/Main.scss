@@ -7,6 +7,10 @@
         margin: 180px 0 0 100px;
    }
 
+   >p.tmain{
+    margin: 180px 0 0 100px;
+   }
+
     .button_links{
         width: fit-content;
         height: fit-content;
@@ -130,7 +134,16 @@
     }
 }
 
+@media(max-width: 730px){
+    .main_image{
+        .button_links{   
+            margin: 40px auto 0 auto;
+        }
+    }
+}
+
 @media(max-width: 720px){
+    
     .main_politics{       
         padding: 25px 40px 50px 40px;
     }
@@ -151,7 +164,6 @@
     
         .button_links{
             flex-direction: column;    
-            margin: 40px auto 0 auto;
         }
     }
 }

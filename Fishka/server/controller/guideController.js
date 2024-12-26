@@ -5,10 +5,10 @@ const Controller = require("./controller");
 
 class GuideController extends Controller {
     async create(req, res) {
-        const { id_user, seniority, description } = req.body;
+        const { id_guide, seniority, description } = req.body;
         const image = req.files ? req.files.image : undefined;
 
-        const guideData = {id_user, seniority, description, image}
+        const guideData = {id_guide, seniority, description, image}
 
         const guide = await guideService.create(guideData);
     

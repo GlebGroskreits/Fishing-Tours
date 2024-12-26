@@ -1,4 +1,4 @@
-const {Guide} = require('../model/model')
+const {Guide, User_Personal, User} = require('../model/model')
 const uuid = require('uuid')
 const path = require('path')
 
@@ -36,9 +36,37 @@ class GuideService{
     }
     
     async getAll() {
-        const guides = await Guide.findAll();
+        const guides = await Guide.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'user', 
+                    include: {
+                        model: User_Personal,
+                        as: 'user_personal', 
+                        attributes: ['name', 'surname']
+                    }
+                }
+            ]
+        });
     
-        return guides;
+        // Преобразуем массив для получения плоской структуры
+        const flatGuides = guides.map(guide => {
+            const { id_guide, description, image, seniority } = guide;
+            const { user } = guide;
+            const { user_personal } = user;
+    
+            return {
+                id_guide,
+                description,
+                image,
+                seniority,
+                name: user_personal.name,
+                surname: user_personal.surname
+            };
+        });
+
+        return flatGuides;
     }
 }
 

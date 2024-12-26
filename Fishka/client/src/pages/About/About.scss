@@ -2,7 +2,7 @@
 
 .main_image{
     
-    >p:nth-of-type(1){
+    >p.tabout:nth-of-type(1){
         max-width: 530px;
         width: 100%;
         margin: 100px 0 15px 100px;
@@ -76,7 +76,13 @@
 
 @media(max-width: 730px){
     .main_image{
-        >p:nth-of-type(1){
+        >p.tabout:nth-of-type(1){
+            text-align: center;
+            padding: 0 10px;
+            margin: 100px auto 15px auto;
+        }
+
+        >p.tmain:nth-of-type(1){
             text-align: center;
             padding: 0 10px;
             margin: 100px auto 15px auto;
