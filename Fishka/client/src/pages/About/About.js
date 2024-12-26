@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './About.scss';
 import { AboutBC } from "../../utils/images";
-import { CardYears, HeaderSection } from "../../utils/components";
+import { CardYears, HeaderSection, MapClick } from "../../utils/components";
 
 const About = () => {
 
@@ -54,6 +54,9 @@ const About = () => {
                         </div>
                     ))}
                 </div>
+            </section>
+            <section className="main_map">
+                <MapClick />
             </section>
        </>
     );

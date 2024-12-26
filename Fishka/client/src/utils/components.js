@@ -20,6 +20,8 @@ export { default as HeaderSection} from '../components/HeaderSection/HeaderSecti
 export { default as LinkSection} from '../components/LinkSection/LinkSection'
 export { default as ButtonLinkCircle} from '../components/ButtonLinkCircle/ButtonLinkCircle'
 export { default as CardYears} from '../components/CardYears/CardYears'
+export { default as MapClick} from '../components/MapClick/MapClick'
+
 
 
 

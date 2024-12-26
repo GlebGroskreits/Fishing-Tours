@@ -1,0 +1,82 @@
+@import '../../styles/global';
+
+.address{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 340px;
+    width: 100%;
+
+
+    .list_address{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        max-width: 500px;
+
+        .address_line{
+            @extend .container_center;
+            gap: 5px;
+    
+            >span{
+                height: 8px;
+                width: 8px;
+                border-radius: 10px;
+                background-color: $text_decoration_black;
+            }
+    
+            >p{
+                color: $text_decoration_black;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    
+}
+
+
+.mapping{
+    @extend .container_center;
+    gap: 50px;
+    width: 100%;
+    flex-wrap: nowrap;
+
+    .map{
+        height: 340px;
+        min-width: 620px;
+        border-radius: 10px;
+    }
+}
+
+@media(max-width: 1179px){
+    .mapping{
+        flex-wrap: wrap;
+
+    }
+    .address{
+        width: 100%;
+    }
+}
+
+@media(max-width: 509px){
+    .address{
+        .list_address{
+
+            align-items: center;
+            .address_line{
+                >span{
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    .mapping{  
+        .map{
+            padding: 0 40px;
+            
+        }
+    }
+}

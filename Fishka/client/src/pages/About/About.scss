@@ -66,6 +66,14 @@
     }
 }
 
+.main_map{
+    @extend .container_center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 25px 100px 50px 100px;
+    box-sizing: border-box;
+}
+
 @media(max-width: 730px){
     .main_image{
         >p:nth-of-type(1){
@@ -88,5 +96,13 @@
         .main_years_card{
             padding: 20px 10px;
         }
+    }
+
+    .main_map{
+        @extend .container_center;
+        flex-direction: column;
+        gap: 30px;
+        padding: 25px 10px 50px 10px;
+        box-sizing: border-box;
     }
 }
