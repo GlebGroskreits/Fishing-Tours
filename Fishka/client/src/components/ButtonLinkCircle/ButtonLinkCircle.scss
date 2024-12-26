@@ -1,0 +1,31 @@
+@import '../../styles/global';
+
+.button_link_c{
+    @extend .container_center;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    background-color: rgba($text_decoration_white, 0.3);
+    text-decoration: none;
+    position: relative;
+    border-radius: 60px;
+    margin: 0;
+
+
+    &::before { 
+        content: ''; 
+        position: absolute; 
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 60px;
+        border: 3px solid $text_decoration_white; 
+        pointer-events: none; 
+        z-index: 1; 
+    }
+
+    >p{
+        color: $text_decoration_black;
+    }
+}

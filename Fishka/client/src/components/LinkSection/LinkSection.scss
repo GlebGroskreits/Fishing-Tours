@@ -1,0 +1,57 @@
+@import '../../styles/global';
+
+.link_section{
+    @extend .container_between;
+    flex-wrap: wrap;
+
+    gap: 30px 50px; 
+    padding: 50px 100px;
+    box-sizing: border-box;
+    background-color: $gray_e6;
+
+    .link_select{
+        flex-wrap: wrap;
+        @extend .container_center;
+        gap: 30px 50px;
+
+        margin-right: 50px;
+
+        >p{
+            color: $main_black;
+        }
+
+        >div{
+
+            display: flex;
+            gap: 10px;
+        }
+    }
+}
+
+@media(max-width: 943px){
+    .link_section{
+        .link_select{
+            margin-right: 0;
+        }
+    }
+}
+
+@media(max-width: 720px){
+    .link_section{
+        padding: 50px 40px;
+
+        .link_select{
+            margin-right: 0;
+        }
+    }
+}
+
+@media(max-width: 587px){
+    .link_section{
+        flex-direction: column;
+
+        .link_select{
+            flex-direction: column;
+        }
+    }
+}

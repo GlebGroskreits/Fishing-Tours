@@ -55,7 +55,7 @@ const Header = () => {
             </nav>
             <div className="icon_link">
                 {social.map((social, index) => (
-                        <img src={social} alt="soc" key={index} />
+                    <img src={social} alt="soc" key={index} />
                 ))}
             </div>
             <button className="burger_menu" onClick={() => openBurgerMenu(!isBurgerOpen)}>

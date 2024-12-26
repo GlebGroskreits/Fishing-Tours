@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './Main.scss';
-import { ButtonLink, CardMainSection, HeaderSection } from "../../utils/components";
+import { ButtonLink, CardMainSection, HeaderSection, LinkSection } from "../../utils/components";
 import { MainBC, Politics1, Politics2, Politics3, Politics4 } from "../../utils/images";
 import { WorkExpirience, ProffesionalGuide, UniqueLocation, Safety } from "../../utils/icons";
 
@@ -58,6 +58,12 @@ const politics = [
     },
 ]
 
+const pageLink = {
+    link: '/about',
+    header: 'More about us',
+    page: 'About',
+}
+
 const Main = () => {
 
     const [politic, setPolitic] = useState({
@@ -110,6 +116,7 @@ const Main = () => {
                     </div>
                 </div>   
             </section>
+            <LinkSection text={pageLink.header} page={pageLink.page} link={pageLink.link}/>
         </div>
     );
 }

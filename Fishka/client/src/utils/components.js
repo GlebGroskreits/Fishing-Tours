@@ -16,3 +16,7 @@ export { default as SMain} from '../components/SMain/SMain'
 export { default as ButtonLink} from '../components/ButtonLink/ButtonLink'
 export { default as CardMainSection} from '../components/CardMainSection/CardMainSection'
 export { default as HeaderSection} from '../components/HeaderSection/HeaderSection'
+export { default as LinkSection} from '../components/LinkSection/LinkSection'
+export { default as ButtonLinkCircle} from '../components/ButtonLinkCircle/ButtonLinkCircle'
+
+

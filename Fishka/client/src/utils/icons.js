@@ -14,3 +14,6 @@ export { default as ProffesionalGuide } from '../assets/icon/profGuides.svg'
 export { default as UniqueLocation } from '../assets/icon/uniqueLoc.svg'
 export { default as Safety } from '../assets/icon/safety.svg'
 
+export { default as BTelegram } from '../assets/icon/btelegram.svg'
+export { default as BVk } from '../assets/icon/bvk.svg'
+export { default as BInstagram } from '../assets/icon/binstagram.svg'
