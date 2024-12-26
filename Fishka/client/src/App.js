@@ -1,4 +1,4 @@
-import { AppRouter, Header, Loading, SMain } from "./utils/components";
+import { AppRouter, Footer, Header, Loading, SMain } from "./utils/components";
 import { checkAuth } from "./store/slices/authSlice";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -25,11 +25,11 @@ function App() {
     return (
         <BrowserRouter>    
             <Header />
-            <AppRouter />
             <SMain>
+            <AppRouter />
             {/* {isInitialized ? ( <AppRouter /> ) : ( <Loading /> )} */}
             </SMain>
-
+            <Footer />
         </BrowserRouter>
     );
 }

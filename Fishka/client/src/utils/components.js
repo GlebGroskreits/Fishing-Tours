@@ -11,6 +11,7 @@ export { default as AppRouter } from '../components/AppRouter/AppRouter'
 export { default as Loading } from '../components/Loading/Loading'
 
 export { default as Header } from '../components/Header/Header'
+export { default as Footer } from '../components/Footer/Footer'
 export { default as BurgerMenu } from '../components/BurgerMenu/BurgerMenu'
 export { default as SMain} from '../components/SMain/SMain'
 export { default as ButtonLink} from '../components/ButtonLink/ButtonLink'

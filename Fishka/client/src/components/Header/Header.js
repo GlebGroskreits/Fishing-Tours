@@ -47,7 +47,7 @@ const Header = () => {
 
     return(
         <header>
-            <Link to="/about" className="text_mnt_f26_l26">Fishka</Link>
+            <Link to="/main" className="text_mnt_f26_l26">Fishka</Link>
             <nav>
                 {link.map((link, index) => (
                     <Link to={link.link} className="text_mln_f22_l22" key={index}>{link.name}</Link>

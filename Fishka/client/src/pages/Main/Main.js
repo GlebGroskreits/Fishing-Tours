@@ -85,7 +85,7 @@ const Main = () => {
     }
 
     return (
-        <div className="mains">
+        <>
             <section className="main_image">
                 <img src={MainBC} alt="bcMain" className="responsive_image"/>
                 <p className="text_mnt_f46_l60">The perfect fishing vacation starts here!</p>
@@ -117,7 +117,7 @@ const Main = () => {
                 </div>   
             </section>
             <LinkSection text={pageLink.header} page={pageLink.page} link={pageLink.link}/>
-        </div>
+        </>
     );
 }
 
