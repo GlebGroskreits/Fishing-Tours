@@ -1,5 +1,5 @@
 export { default as MainBC } from '../assets/image/main.svg'
-
+export { default as AboutBC } from '../assets/image/aboutbc.svg'
 
 export { default as Politics1 } from '../assets/image/politics1.svg'
 export { default as Politics2 } from '../assets/image/politics2.svg'

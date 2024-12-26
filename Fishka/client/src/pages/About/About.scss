@@ -1,0 +1,41 @@
+@import '../../styles/global';
+
+.main_image{
+    
+    >p:nth-of-type(1){
+        max-width: 530px;
+        width: 100%;
+        margin: 100px 0 15px 100px;
+    }
+
+    >p:nth-of-type(2){
+        color: rgba($text_decoration_white, 0.7);
+        margin: 0 0 0 100px;
+    }
+}
+
+@media(max-width: 730px){
+    .main_image{
+        >p:nth-of-type(1){
+            text-align: center;
+            padding: 0 10px;
+            margin: 100px auto 15px auto;
+        }
+
+        >p:nth-of-type(2){
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    }
+
+}
+
+@media(max-width: 590px){
+    .main_image{
+        >p{
+
+        }
+    }
+
+}

@@ -19,6 +19,16 @@
     color: $main_white;
 }
 
+.text_mnt_f46_l50 {
+    @extend .text_Montserrat;
+
+    font-size: 46px; 
+    font-weight: 600; 
+    line-height: 60px;
+    letter-spacing: 0;
+    color: $main_white;
+}
+
 .text_mnt_f36_l36 {
     @extend .text_Montserrat;
 
