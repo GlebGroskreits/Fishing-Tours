@@ -37,24 +37,24 @@ const politics = [
     },
     {
         image: Politics2,
-        header: 'Best equipment',
-        underHeader: 'all taste and colors',
-        textUp: 'Our arsenal includes high quality rods, lures and accessories from well-known manufacturers.',
-        textLow: 'Our guides are always ready to help you choose the right equipment based on the peculiarities of the water body and your preferences.'
+        header: 'Bliss at Dusk',
+        underHeader: 'a moment of reflection',
+        textUp: 'On the dock, bathed in the soft light of sunset, a fisherman with a rod savors the moment.',
+        textLow: 'The still water and picturesque landscape provide perfect conditions for fishing and relaxation, allowing him to forget the hustle of everyday life.'
     },
     {
         image: Politics3,
-        header: 'Best equipment',
-        underHeader: 'all taste and colors',
-        textUp: 'Our arsenal includes high quality rods, lures and accessories from well-known manufacturers.',
-        textLow: 'Our guides are always ready to help you choose the right equipment based on the peculiarities of the water body and your preferences.'
+        header: 'Evening Fishing',
+        underHeader: 'embracing Nature is beauty',
+        textUp: 'A fisherman at sunset, standing on the dock, casts his line while enjoying the peace and beauty of nature.',
+        textLow: 'The rod in his hands and the warm hues of the sunset create a serene atmosphere, ideal for an engaging fishing experience.'
     },
     {
         image: Politics4,
-        header: 'Best equipment',
-        underHeader: 'all taste and colors',
-        textUp: 'Our arsenal includes high quality rods, lures and accessories from well-known manufacturers.',
-        textLow: 'Our guides are always ready to help you choose the right equipment based on the peculiarities of the water body and your preferences.'
+        header: 'Fishing at Sunset',
+        underHeader: 'a perfect evening on the dock',
+        textUp: 'Against the stunning backdrop of a sunset, a fisherman stands on the dock with a fishing rod in hand.',
+        textLow: 'The calm water reflects the vibrant colors of the sky, creating an atmosphere of tranquility. This moment is perfect for fishing, where nature and soul unite.'
     },
 ]
 

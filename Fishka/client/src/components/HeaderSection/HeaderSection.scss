@@ -25,3 +25,21 @@
         border-radius: 1px;
     }
 }
+
+@media(max-width: 509px){
+   
+    .header_section{
+       justify-content: center;
+        
+        .hs_text{
+            align-items: center;
+            >p{
+                align-items: center;
+            }
+        }
+
+        .hs_line{
+            display: none;
+        }
+    }
+}
