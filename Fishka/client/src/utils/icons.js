@@ -8,3 +8,9 @@ export { default as Tour } from '../assets/icon/tour.svg'
 export { default as Vip } from '../assets/icon/vip.svg'
 export { default as Review } from '../assets/icon/review.svg'
 export { default as Workspace } from '../assets/icon/workspace.svg'
+
+export { default as WorkExpirience } from '../assets/icon/workExpirience.svg'
+export { default as ProffesionalGuide } from '../assets/icon/profGuides.svg'
+export { default as UniqueLocation } from '../assets/icon/uniqueLoc.svg'
+export { default as Safety } from '../assets/icon/safety.svg'
+

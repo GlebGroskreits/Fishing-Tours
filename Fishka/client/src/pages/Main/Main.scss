@@ -17,3 +17,82 @@
         margin: 40px 0 0 100px;
     }
 }
+
+.main_card{
+    @extend .container_center;
+    padding: 50px 100px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 30px 40px;
+}
+
+
+.main_politics{
+    @extend .container_center;
+    flex-direction: column;
+    padding: 25px 100px 50px 100px;
+    box-sizing: border-box;
+    gap: 30px;
+
+    .mp{
+        @extend .container_center;
+        gap: 50px;
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    
+        .politic_image{
+            height: 300px;
+            width: 300px;
+            border-radius: 10px;
+        }
+    
+        .politic_text{
+            width: 400px;
+            min-height: 300px;
+    
+            >p:nth-of-type(1){
+                color: $text_decoration_black;
+            }
+    
+            >p:nth-of-type(2){
+                margin: 15px 0 30px 0;
+                color: rgba($text_decoration_black, 0.8);
+            }
+    
+            >p:nth-of-type(3){
+                margin-bottom: 10px;
+            }
+
+            >p:nth-of-type(3), :nth-of-type(4){
+                color: rgba($text_decoration_black, 0.6);
+            }
+        }
+    
+        .politic_paggination{
+            width: fit-content;
+            box-sizing: border-box;
+            padding-left: 50px;
+            padding-top: 15px;
+            display: flex;
+            gap: 10px;
+
+            >img{
+                height: 40px;
+                width: 40px;
+                border-radius: 40px;
+            }
+        }
+    }
+}
+
+
+@media(max-width: 768px){
+    .main_card{       
+        padding: 50px 40px;
+    }
+
+    .main_politics{
+        padding: 50px 40px;
+    }
+}

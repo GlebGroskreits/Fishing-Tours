@@ -7,7 +7,6 @@
     font-family:  'Montserrat', sans-serif;
     margin: 0; 
     width: fit-content;
-    letter-spacing: 1px;
 }
 
 .text_mnt_f46_l60 {
@@ -20,6 +19,15 @@
     color: $main_white;
 }
 
+.text_mnt_f36_l36 {
+    @extend .text_Montserrat;
+
+    font-size: 36px; 
+    font-weight: 600; 
+    line-height: 36px;
+
+    color: $main_black;
+}
 
 .text_mnt_f26_l26 {
     @extend .text_Montserrat;
@@ -56,5 +64,30 @@
 
     font-size: 22px; 
     line-height: 22px;
+    color: $main_white;
+}
+
+.text_mln_f20_l26 {
+    @extend .text_Mallanna;
+
+    font-size: 20px; 
+    line-height: 26px;
+    color: $main_white;
+}
+
+.text_mln_f20_l22 {
+    @extend .text_Mallanna;
+
+    font-weight: 600; 
+    font-size: 22px; 
+    line-height: 22px;
+    color: $main_white;
+}
+
+.text_mln_f18_l26 {
+    @extend .text_Mallanna;
+
+    font-size: 18px; 
+    line-height: 26px;
     color: $main_white;
 }

@@ -1,0 +1,27 @@
+@import '../../styles/global';
+
+.header_section{
+    width: 100%;
+    display: flex;
+    gap: 15px;
+
+    .hs_text{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: fit-content;
+
+        >p:nth-of-type(2){
+            color: rgba($main_black, 0.6);
+            white-space: nowrap;
+        }
+    }
+
+    .hs_line{
+        width: 100%;
+        margin-top: 54px;
+        background-color: $main_black;
+        height: 1px;
+        border-radius: 1px;
+    }
+}

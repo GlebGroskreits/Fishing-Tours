@@ -1,0 +1,30 @@
+@import '../../styles/global';
+
+.card_main_section{
+    @extend .container_center;
+
+    gap: 15px;
+    flex-direction: column;
+    width: 240px;
+    height: 235px;
+    background-color: $gray_e6;
+    border-radius: 10px;
+
+    >img{
+        height: 40px;
+        width: 40px;
+    }
+
+    >p{
+        color: $text_decoration_black;
+    }
+
+    >p:nth-of-type(1){
+        margin-top: 15px;
+    }
+
+    >p:nth-of-type(2){
+        width: 200px;
+        text-align: center;
+    }
+}
