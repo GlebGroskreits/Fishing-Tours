@@ -1,0 +1,1 @@
+export { default as MainBC } from '../assets/image/main.svg'

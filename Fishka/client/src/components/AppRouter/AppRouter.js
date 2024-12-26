@@ -6,7 +6,8 @@ import { clientRoutes } from "../../routes";
 import Authorization from "../../pages/Authorization/Authorization";
 
 const AppRouter = () => {
-    const auth = useSelector((state) => state.auth.isAuth);
+    // const auth = useSelector((state) => state.auth.isAuth);
+    const auth = true;
     const role = useSelector((state) => state.auth.user.role);
 
     return (

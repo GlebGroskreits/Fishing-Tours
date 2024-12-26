@@ -1,0 +1,19 @@
+@import '../../styles/global';
+
+.main_image{
+    
+   >p{
+        width: 378px;
+        margin: 180px 0 0 100px;
+   }
+
+    .button_links{
+        width: fit-content;
+        height: fit-content;
+        @extend .container_center;
+        gap: 30px;
+        flex-wrap: wrap;
+
+        margin: 40px 0 0 100px;
+    }
+}

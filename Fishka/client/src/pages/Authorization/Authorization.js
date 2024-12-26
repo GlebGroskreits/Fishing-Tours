@@ -1,11 +1,14 @@
 import React from "react";
 import './Authorization.scss';
+import { SMain } from "../../utils/components";
 
 const Authorization = () => {
     return (
-        <main>
-            sdfsdf
-        </main>
+       <SMain>
+           <div>
+            <p>sdf</p>
+           </div>
+       </SMain>
     );
 }
 

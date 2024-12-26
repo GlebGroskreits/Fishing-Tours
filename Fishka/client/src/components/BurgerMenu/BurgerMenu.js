@@ -36,7 +36,7 @@ const BurgerMenu = () => {
     const {isBurgerOpen} = useSelector((state) => state.setting)
 
     return(
-       <div className={`b_menu ${!isBurgerOpen ? 'show' : 'hide'}`}>
+       <div className={`b_menu ${isBurgerOpen ? 'show' : 'hide'}`}>
         {link.map((link, index) => (
             <Link to={link.link} key={index}>
                 <img src={link.icon} alt="p" />
