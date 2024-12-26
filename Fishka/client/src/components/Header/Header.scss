@@ -1,0 +1,57 @@
+@import '../../styles/global';
+
+header{
+    height: 80px;
+    width: 100%;
+    background-color: $main_black;
+    display: flex;
+    align-items: center;
+
+    >a:nth-of-type(1){
+        margin-left: 70px;
+    }
+
+    a{
+        text-decoration: none
+    }
+
+    nav{
+        @extend .container_center;
+        flex-grow: 1;
+        gap:25px;
+        margin-left: 50px;
+
+        >a:last-child{
+            margin-left: auto;
+        }
+    }
+
+    .icon_link{
+        @extend .container_center;
+        gap: 15px;
+        margin: 0 70px 0 50px;
+
+        >img{
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    .burger_menu{
+        @extend .container_center;
+
+        border: 0;
+        outline: none;
+        flex-direction: column;
+        gap: 7px;
+        margin-right: 50px;
+        width: 30px;
+        background-color: transparent;
+        
+        >span{
+            width: 30px;
+            height: 3px;
+            background-color: $main_white;
+        }
+    }
+}

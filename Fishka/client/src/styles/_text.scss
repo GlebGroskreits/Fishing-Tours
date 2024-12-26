@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900;ital,wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mallanna');
+@import './_variables';
+
+//---------------------------------MONTSERRAT------------------------------------
+.text_Montserrat {
+    font-family:  'Montserrat', sans-serif;
+    margin: 0; 
+    width: fit-content;
+    letter-spacing: 1px;
+}
+
+.text_mnt_f26_l26 {
+    @extend .text_Montserrat;
+
+    font-size: 26px; 
+    font-weight: 600; 
+    line-height: 26px;
+
+    color: $main_white;
+}
+
+
+
+
+
+//---------------------------------MALLANNA------------------------------------
+.text_Mallanna {
+    font-family: 'Mallanna', sans-serif;
+    margin: 0;
+    width: fit-content;
+}
+
+.text_mln_f22_l22 {
+    @extend .text_Mallanna;
+
+    font-size: 22px; 
+    line-height: 22px;
+    color: $main_white;
+}
