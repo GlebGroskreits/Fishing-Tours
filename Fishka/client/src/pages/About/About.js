@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import './About.scss';
 import { AboutBC } from "../../utils/images";
+import { CardYears } from "../../utils/components";
 
 const About = () => {
+
+    const [cards, setCards] = useState([]);
+    const [selectIndex, setIndex] = useState(0);
+    const [selectYear, setSelectYear] = useState([])
+
+    useEffect(() => {
+        fetch('./data/year.json') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Сетевая ошибка');
+                }
+                return response.json();
+            })
+            .then(data => setCards(data.cards))
+            .catch(error => console.error('Произошла проблема с операцией fetch:', error));
+            
+    }, []);
+
+    const setIndexValue = (index) => {
+        setIndex(index)
+        setSelectYear(cards[index].items)
+    }
+
     return (
        <>
             <section className="main_image">
                 <img src={AboutBC} alt="bcMain" className="responsive_image"/>
                 <p className="text_mnt_f46_l50">We respect both our customers and nature</p>
                 <p className="text_mln_f26_l26">ensuring safety, passion for fishing</p>
+            </section>
+            <section className="main_years">
+                <></>
+               
+                <div className="main_years_card">
+                    {selectYear.map((year, index) => (
+                        <CardYears key={index} textUp={year.textUp} textLow={year.textLow}/>
+                    ))}
+                </div>
+                <div className="years_paggination">
+                    {cards.map((card, index) => (
+                        <div className="yp">
+                            <p className="text_mln_f18_l18">{card.year}</p>
+                            <span className={`${selectIndex == index ? 'dot active' : 'dot'}`} onClick={() => setIndexValue(index)}></span>
+                        </div>
+                    ))}
+                </div>
             </section>
        </>
     );

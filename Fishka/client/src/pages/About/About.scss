@@ -14,6 +14,46 @@
     }
 }
 
+.main_years{
+    .main_years_card{
+        @extend .container_center;
+        gap: 40px;
+        padding: 20px 10px;
+        box-sizing: border-box;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .years_paggination{
+        @extend .container_center;
+        gap: 30px;
+        
+        .yp{
+            align-items: center;
+            height: 38px;
+            width: 37px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            >p{
+                color: $text_decoration_black;
+            }
+
+            .dot{
+                height: 8px;
+                width: 8px;
+                border: 1px solid $text_decoration_black;
+                border-radius: 10px;
+            }
+    
+            .dot.active{
+                background-color: $text_decoration_black;
+            }
+        }     
+    }
+}
+
 @media(max-width: 730px){
     .main_image{
         >p:nth-of-type(1){
@@ -26,15 +66,6 @@
             text-align: center;
             margin: 0 auto;
             padding: 0 20px;
-        }
-    }
-
-}
-
-@media(max-width: 590px){
-    .main_image{
-        >p{
-
         }
     }
 

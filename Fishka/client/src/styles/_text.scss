@@ -101,3 +101,12 @@
     line-height: 26px;
     color: $main_white;
 }
+
+.text_mln_f18_l18 {
+    @extend .text_Mallanna;
+
+    font-size: 18px; 
+    line-height: 18px;
+    color: $main_white;
+}
+

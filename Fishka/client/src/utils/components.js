@@ -19,5 +19,7 @@ export { default as CardMainSection} from '../components/CardMainSection/CardMai
 export { default as HeaderSection} from '../components/HeaderSection/HeaderSection'
 export { default as LinkSection} from '../components/LinkSection/LinkSection'
 export { default as ButtonLinkCircle} from '../components/ButtonLinkCircle/ButtonLinkCircle'
+export { default as CardYears} from '../components/CardYears/CardYears'
+
 
 

@@ -1,0 +1,44 @@
+{
+    "cards": [
+        {
+            "year": 2015,
+            "items": [
+                {"textUp": "Founded", "textLow": "Founded the company. We started with a small team of fishing enthusiasts."},
+                {"textUp": "First Tour", "textLow": "This success was the basis for our further development and inspired us to expand our offerings."},
+                {"textUp": "First Equipment", "textLow": "Acquired our first set of high-quality rods and reels to enhance our tours."}
+            ]
+        },
+        {
+            "year": 2017,
+            "items": [
+                {"textUp": "New Destinations", "textLow": "Launched tours to new fishing destinations, attracting more enthusiasts."},
+                {"textUp": "Expert Guides", "textLow": "Hired experienced fishing guides to improve the quality of our tours."},
+                {"textUp": "Customer Growth", "textLow": "Saw significant growth in customer base, thanks to word of mouth."}
+            ]
+        },
+        {
+            "year": 2019,
+            "items": [
+                {"textUp": "Online Booking", "textLow": "Introduced an online booking system for easier tour reservations."},
+                {"textUp": "Sustainability Focus", "textLow": "Started initiatives to promote sustainable fishing practices among our clients."},
+                {"textUp": "Community Events", "textLow": "Organized community events to raise awareness about local fishing regulations."}
+            ]
+        },
+        {
+            "year": 2020,
+            "items": [
+                {"textUp": "Virtual Tours", "textLow": "Adapted to changes by offering virtual fishing experiences during the pandemic."},
+                {"textUp": "Expanded Team", "textLow": "Grew our team to accommodate the increase in virtual tour participants."},
+                {"textUp": "Enhanced Equipment", "textLow": "Invested in new technology to improve the virtual fishing experience."}
+            ]
+        },
+        {
+            "year": 2024,
+            "items": [
+                {"textUp": "New Partnerships", "textLow": "Formed partnerships with local businesses to enhance our tour offerings."},
+                {"textUp": "Customer Loyalty Program", "textLow": "Launched a loyalty program to reward returning customers."},
+                {"textUp": "Innovative Tours", "textLow": "Introduced innovative tours, including night fishing and private charters."}
+            ]
+        }
+    ]
+}
