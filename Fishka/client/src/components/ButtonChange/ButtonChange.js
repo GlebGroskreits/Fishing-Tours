@@ -25,7 +25,6 @@ const ButtonChange = ({ text, onClick, typeB }) => {
         type = 'transparent';   
     }
     
-    console.log(type)
     return (
         <> 
             <button className={`button_change ${type}`}>
