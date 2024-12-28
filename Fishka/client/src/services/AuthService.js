@@ -18,20 +18,13 @@ class AuthService extends BaseService {
 
         const authResponse = createAuthResponse(response);
         
-        return authResponse; // Успешный ответ
+        return authResponse; 
     }
 
-    ///////
-    /* static async registration(email, password) {
-        try {
-            const response = await $api.post('/registration', { email, password });
-
-            return authResponse; // Возвращаем весь объект ответа
-        } catch (error) {
-            console.error('Login failed:', error);
-            throw error; // Обработка ошибок
-        }
-    } */
+    async registration(registrationData) {
+        const response = await BaseService.request("post", API_ENDPOINTS.USER.REGISTRATION, { registrationData });
+        return response; 
+    } 
 
     // async logout() {
     //     try {

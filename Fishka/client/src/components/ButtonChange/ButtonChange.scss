@@ -1,0 +1,29 @@
+@import '../../styles/global';
+
+
+.button_change{
+    @extend .container_center;
+    border-radius: 10px;
+    height: 34px;
+    width: 138px;
+    border: 1px solid rgba($text_decoration_black, 0.3);
+
+    >p{
+        color: $text_decoration_black;
+        margin-bottom: 2px;
+    }
+}
+
+.button_change.transparent{
+    background-color: transparent;
+}
+
+.button_change.blue{
+    background-color: $button_blue;
+}
+.button_change.red{
+    background-color: $button_red;
+}
+.button_change.yellow{
+    background-color: $button_yellow;
+}

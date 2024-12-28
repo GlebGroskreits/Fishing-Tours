@@ -36,3 +36,16 @@ main{
         z-index: -1;
     }
 }
+
+.fade_in {
+    animation: fadeIn 0.5s ease forwards; /* Плавное появление */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

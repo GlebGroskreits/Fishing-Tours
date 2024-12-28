@@ -1,0 +1,22 @@
+@import '../../styles/global';
+
+
+.custom_input{
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    border: 0;
+    @extend .text_mln_f18_l18;
+    color: $text_decoration_black;
+    border-radius: 5px 5px 0 0 ;
+    position: relative;
+    border-bottom: 1px solid rgba($text_decoration_black, 0.8);
+    background-color: transparent;
+}
+
+.custom_input::placeholder{
+    @extend .text_mln_f18_l18;
+    color: rgba($text_decoration_black, 0.8);
+}

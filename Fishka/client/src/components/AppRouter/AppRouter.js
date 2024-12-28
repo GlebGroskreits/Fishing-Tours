@@ -6,8 +6,8 @@ import { clientRoutes } from "../../routes";
 import Authorization from "../../pages/Authorization/Authorization";
 
 const AppRouter = () => {
-    // const auth = useSelector((state) => state.auth.isAuth);
-    const auth = true;
+    const auth = useSelector((state) => state.auth.isAuth);
+    console.log(auth)
     const role = useSelector((state) => state.auth.user.role);
 
     return (
@@ -19,13 +19,13 @@ const AppRouter = () => {
                         {clientRoutes.map(({ path, Component }) => (
                             <Route key={path} path={path} element={<Component />} />
                         ))}
-
+                        
                         <Route path="*" element={<Navigate to="/main" />} />
                     </>
                 ) : (
                     <>
-                        <Route path="/login" element={<Authorization />} />
-                        <Route path="*" element={<Navigate to="/login" />} />
+                        <Route path="/authorization" element={<Authorization />} />
+                        <Route path="*" element={<Navigate to="/authorization" />} />
                     </>
                 )}
             </Routes>

@@ -1,0 +1,37 @@
+@import '../../styles/global';
+
+.custom_select{
+    box-sizing: border-box;
+    padding: 5px 0;
+    width: fit-content;
+    position: relative;
+
+    .select_header{
+        @extend .container_center;
+        gap: 10px;
+
+        >p{
+            margin-bottom: 2px;
+            color: $text_decoration_black;
+        }
+    }
+
+    >.options{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 30px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: $gray_b2;
+        min-width: 120px;
+
+        >p{
+            @extend .text_mln_f18_l18;
+            color: rgba($text_decoration_black, 0.8);
+        }
+    }
+}

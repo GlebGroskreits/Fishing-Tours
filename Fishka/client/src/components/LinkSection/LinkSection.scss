@@ -49,7 +49,9 @@
 @media(max-width: 587px){
     .link_section{
         flex-direction: column;
-
+        padding: 50px 10px;
+        margin: 0 auto;
+        
         .link_select{
             flex-direction: column;
         }

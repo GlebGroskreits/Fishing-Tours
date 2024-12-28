@@ -21,7 +21,7 @@ const socials = [
 const LinkSection = ({ text, page, link }) => {
     return (
         <section className="link_section">
-            <p className="text_mnt_f36_l36">More about us</p>
+            <p className="text_mnt_f36_l36">{text}</p>
             <div className="link_select">
                 <ButtonLink text={page} link={link}/>
                 <p className="text_mnt_f26_l26">or</p>

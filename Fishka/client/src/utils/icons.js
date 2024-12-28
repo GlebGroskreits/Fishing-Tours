@@ -23,3 +23,5 @@ export { default as BTwitter } from '../assets/icon/btwitter.svg'
 export { default as FTelephone } from '../assets/icon/ftelephone.svg'
 export { default as FAddress } from '../assets/icon/faddress.svg'
 export { default as FArrow } from '../assets/icon/farrow.svg'
+
+export { default as SelectArrow} from '../assets/icon/selectArrow.svg'

@@ -22,6 +22,14 @@ export { default as ButtonLinkCircle} from '../components/ButtonLinkCircle/Butto
 export { default as CardYears} from '../components/CardYears/CardYears'
 export { default as MapClick} from '../components/MapClick/MapClick'
 export { default as GuideSection} from '../components/GuideSection/GuideSection'
+export { default as CustomInput} from '../components/CustomInput/CustomInput'
+export { default as TourSection} from '../components/TourSection/TourSection'
+export { default as ButtonChange} from '../components/ButtonChange/ButtonChange'
+export { default as CustomSelect} from '../components/CustomSelect/CustomSelect'
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import './Main.scss';
-import { ButtonLink, CardMainSection, HeaderSection, LinkSection } from "../../utils/components";
+import { ButtonLink, CardMainSection, HeaderSection, LinkSection, Loading } from "../../utils/components";
 import { MainBC, Politics1, Politics2, Politics3, Politics4 } from "../../utils/images";
 import { WorkExpirience, ProffesionalGuide, UniqueLocation, Safety } from "../../utils/icons";
 
@@ -61,7 +61,7 @@ const politics = [
 const pageLink = {
     link: '/about',
     header: 'More about us',
-    page: 'About',
+    page: 'about',
 }
 
 const Main = () => {
@@ -84,22 +84,37 @@ const Main = () => {
         })
     }
 
+    const [loading, setLoading] = useState(true);
+    
+        useEffect(() => {
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 1000); 
+        
+            return () => clearTimeout(timer);
+        }, []);
+
     return (
         <>
+        {loading ? (
+            <Loading />
+        ) : (
+           
+        <>
             <section className="main_image">
-                <img src={MainBC} alt="bcMain" className="responsive_image"/>
+                <img src={MainBC} alt="bcMain" className="responsive_image fade_in"/>
                 <p className="text_mnt_f46_l60 tmain">The perfect fishing vacation starts here!</p>
-                <div className="button_links">
+                <div className="button_links fade_in">
                     <ButtonLink text={'Tours'} link={"/tour"}/>
                     <ButtonLink text={'VIP tours'} link={"/tourVIP"}/>
                 </div>
             </section>
-            <section className="main_card">
+            <section className="main_card fade_in">
                 {cards.map((card, index) => (
                     <CardMainSection key={index} icon={card.icon} textUp={card.textUp} textLow={card.textLow}/>
                 ))}
             </section>
-            <section className="main_politics">
+            <section className="main_politics fade_in">
                 <HeaderSection textUp={"Politics"} textLow={"fair and binding principles"} />
                 <div className="mp">
                     <img src={politic.image} alt="politic" className="politic_image"/>
@@ -117,6 +132,8 @@ const Main = () => {
                 </div>   
             </section>
             <LinkSection text={pageLink.header} page={pageLink.page} link={pageLink.link}/>
+        </>
+        )}
         </>
     );
 }

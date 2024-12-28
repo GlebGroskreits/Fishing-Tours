@@ -3,17 +3,17 @@ import AuthService from '../../services/AuthService';
 import { API_URL } from '../../http';
 import axios from 'axios'
 
-export const login = createAsyncThunk('auth/login', async ({ email, password }) => {
+export const login = createAsyncThunk('auth/login', async ( {email, password }) => {
     const response = await AuthService.login(email, password);
     localStorage.setItem('token', response.accessToken);
     return response;
 });
 
-// export const registration = createAsyncThunk('auth/registration', async ({ email, password }) => {
-//     const response = await AuthService.registration(email, password);
-//     localStorage.setItem('token', response.accessToken);
-//     return response; 
-// });
+export const registration = createAsyncThunk('auth/registration', async ({registrationData}) => {
+    const response = await AuthService.registration(registrationData);
+
+    return response; 
+});
 
     export const logout = createAsyncThunk('auth/logout', async () => {
         await AuthService.logout();
@@ -52,7 +52,10 @@ const authSlice = createSlice({
         builder
             .addCase(login.fulfilled, (state, action) => {  
                 state.isAuth = true;
-                state.user = action.payload.user; 
+                state.user = action.payload.user;  
+            })
+            .addCase(registration.fulfilled, (state, action) => {  
+                console.log('check')
             })
             // .addCase(logout.fulfilled, (state) => {
             //     state.isAuth = false;
@@ -72,6 +75,6 @@ const authSlice = createSlice({
     },
 });
 
-export const { setAuth, setUser } = authSlice.actions;
+export const { setLoading, setAuth, setUser } = authSlice.actions;
 
 export default authSlice.reducer;
