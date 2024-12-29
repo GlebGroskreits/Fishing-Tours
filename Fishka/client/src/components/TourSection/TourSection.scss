@@ -133,3 +133,19 @@
         margin: 0 auto;
     }
 }
+
+.tour_card{
+    padding: 25px 100px 20px 100px;
+    box-sizing: border-box;
+    @extend .container_center;
+    flex-direction: column;
+    gap: 30px;
+
+    .cards{
+        padding: 30px 0 ;
+        box-sizing: border-box;
+        @extend .container_center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+}

@@ -1,0 +1,51 @@
+@import "../../../styles/global";
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+
+    .modal-content {
+        border-radius: 20px;
+        position: relative;
+        width: 300px; 
+        padding: 30px 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        background-color: $gray_e6;
+
+        >p{
+            color: $text_decoration_black;
+        }
+    }
+    
+    .close-button {
+        outline: none;
+        border: 0;
+        height: 17px;
+        width: 17px;
+        border-radius: 17px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        @extend .container_center;
+        @extend .text_mln_f20_l20;
+        padding-bottom: 7.5px;
+        padding-left: 5.5px;
+        color: $text_decoration_black;
+    }
+
+    
+}
+

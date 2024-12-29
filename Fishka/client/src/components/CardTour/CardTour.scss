@@ -1,0 +1,57 @@
+@import '../../styles/global';
+
+
+.card_tour{
+    width: 300px;
+    height: 440px;
+    border-radius: 10px;
+    background-color: rgba($main_black, 0.1);  
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    >img{
+        width: 300px;
+        height: 160px;
+        margin-bottom: 25px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    >p{
+        margin: 0 25px;
+        color: $text_decoration_black
+    }
+
+    >p:nth-of-type(2){
+        margin-top: 10px;
+        margin-bottom: 20px;
+        color: rgba( $text_decoration_black, 0.8);
+    }
+
+    >p:nth-of-type(3){
+        color: rgba( $text_decoration_black, 0.6);
+    }   
+
+    >p:nth-of-type(4){
+        position: absolute;
+        bottom: 25px;
+        left: 175px;
+    }
+
+    .button_more{
+        @extend .container_center;
+        margin: auto auto 15px 25px;
+        border-radius: 10px;
+        width: 96px;
+        height: 31px;
+        border: 2px solid $text_decoration_white;
+        background-color: rgba($text_decoration_white, 0.3);
+        outline: none;
+        text-decoration: none;
+
+        >p{
+            color: $text_decoration_black;
+            margin-bottom: 1px;
+        }
+    }
+}

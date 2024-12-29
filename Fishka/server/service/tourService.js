@@ -2,11 +2,13 @@ const {Tour} = require('../model/model')
 const uuid = require('uuid')
 const path = require('path')
 
-const ApiError = require('../error/ApiError')
+const ApiError = require('../error/ApiError');
+const tourActiveService = require('./tourActiveService');
 
 class TourService{
     async create(tourData){
-        let filename =  uuid.v4() + ".jpg"
+        let filename =  uuid.v4() + ".jpg";
+        console.log(tourData.image)
         tourData.image.mv(path.resolve(__dirname,'..', 'static', filename))
 
         const tour = await Tour.create({...tourData, image: filename})
@@ -42,8 +44,9 @@ class TourService{
 
     async getAll(type) {
         const tours = await Tour.findAll({where: {type: type}});
-    
-        return tours;
+        const activeTours = await tourActiveService.getAll('reserve');
+
+        return {tours, activeTours};
     }
 
     async getOne(id) {

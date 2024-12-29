@@ -49,6 +49,15 @@
     color: $main_white;
 }
 
+.text_mnt_f24_l24 {
+    @extend .text_Montserrat;
+
+    font-size: 24px; 
+    font-weight: 600; 
+    line-height: 24px;
+
+    color: $main_white;
+}
 
 
 
@@ -85,6 +94,14 @@
     color: $main_white;
 }
 
+.text_mln_f20_l20{
+    @extend .text_Mallanna;
+
+    font-size: 20px; 
+    line-height: 20px;
+    color: $main_white;
+}
+
 .text_mln_f20_l22 {
     @extend .text_Mallanna;
 
@@ -107,6 +124,22 @@
 
     font-size: 18px; 
     line-height: 18px;
+    color: $main_white;
+}
+
+.text_mln_f16_l16 {
+    @extend .text_Mallanna;
+
+    font-size: 16px; 
+    line-height: 16px;
+    color: $main_white;
+}
+
+.text_mln_f12_l12 {
+    @extend .text_Mallanna;
+
+    font-size: 12px; 
+    line-height: 12px;
     color: $main_white;
 }
 

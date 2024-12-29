@@ -11,14 +11,8 @@ export const API_ENDPOINTS = {
         GET_ALL_GUIDE: 'guide/'
     },
     TOUR: {
-        CREATE_GALLERY: 'tour/',
-        GET_GALLERY: 'tour/',
-        UPDATE_TOUR: 'tour/',
         CREATE_TOUR: 'tour/',
-        CREATE_DAY: 'tour/',
-        UPDATE_DAY: 'tour/',
-        GET_TOUR: 'tour/',
-        GET_DAY: 'tour/'
+        GET_TOUR: 'tour/'
     },
     TOUR_ACTIVE: {
         GET_ALL_TOUR_ACTIVE: 'tourActive/',

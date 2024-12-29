@@ -39,7 +39,6 @@ const Refresh_Token = sequelize.define('refresh_token', {
 
 const Tour = sequelize.define('tour', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    id_guide: {type: DataTypes.INTEGER, references: { model: Guide, key: 'id_guide' }},
     type: {type: DataTypes.STRING(10), defaultValue:"common", allowNull: true},
     name: {type: DataTypes.STRING(25), allowNull: true},
     image: {type: DataTypes.STRING, allowNull: true},
@@ -72,9 +71,10 @@ const Tour_Day = sequelize.define('tour_day', {
 const Tour_Active = sequelize.define('tour_active', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     id_tour: {type: DataTypes.INTEGER, references: { model: Tour, key: 'id' }},
+    id_guide: {type: DataTypes.INTEGER, references: { model: Guide, key: 'id_guide' }},
     date_start: {type: DataTypes.DATE, allowNull: true},
-    status: {type: DataTypes.BOOLEAN, allowNull: true},
-}, {
+    status: {type: DataTypes.STRING, allowNull: true},
+}, {    
     timestamps: false
 });
 
@@ -115,8 +115,8 @@ Request.belongsTo(User, { foreignKey: 'id_client',targetKey: 'id', as: 'user'});
 Tour_Active.hasMany(Request, {foreignKey: 'id_tour',sourceKey: 'id', as: 'request'});
 Request.belongsTo(Tour_Active, { foreignKey: 'id_tour',targetKey: 'id', as: 'tour'});
 
-Guide.hasMany(Tour, {foreignKey: 'id_guide',sourceKey: 'id_guide', as: 'tour'});
-Tour.belongsTo(Guide, { foreignKey: 'id_guide',targetKey: 'id_guide', as: 'guide'});
+Guide.hasMany(Tour_Active, {foreignKey: 'id_guide',sourceKey: 'id_guide', as: 'tour_active'});
+Tour_Active.belongsTo(Guide, { foreignKey: 'id_guide',targetKey: 'id_guide', as: 'guide'});
 
 
 Tour.hasMany(Tour_Active, {foreignKey: 'id_tour',sourceKey: 'id', as: 'tour_active'});

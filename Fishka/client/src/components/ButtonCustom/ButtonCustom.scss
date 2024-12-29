@@ -1,0 +1,17 @@
+@import '../../styles/global';
+
+.button_more{
+    @extend .container_center;
+    border-radius: 10px;
+    width: 96px;
+    height: 31px;
+    border: 2px solid $text_decoration_white;
+    background-color: rgba($text_decoration_white, 0.3);
+    outline: none;
+    text-decoration: none;
+
+    >p{
+        color: $text_decoration_black;
+        margin-bottom: 1px;
+    }
+}

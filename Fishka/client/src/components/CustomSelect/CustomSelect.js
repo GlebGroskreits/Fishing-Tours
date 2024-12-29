@@ -1,12 +1,21 @@
-import React,  { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './CustomSelect.scss';
 import { SelectArrow } from '../../utils/icons';
 
-const CustomSelect = ({ placeholder, options, onSelectChange  }) => {
-
+const CustomSelect = ({ placeholder, options, onSelectChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(placeholder);
     const selectRef = useRef(null);
+
+    // Загрузка выбранного значения из локального хранилища
+    useEffect(() => {
+        const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));
+        if (savedFilters && savedFilters[placeholder]) {
+            setSelectedOption(savedFilters[placeholder]);
+        } else {
+            setSelectedOption(placeholder); // Устанавливаем placeholder, если нет сохранённого значения
+        }
+    }, [placeholder]);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -15,10 +24,16 @@ const CustomSelect = ({ placeholder, options, onSelectChange  }) => {
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         setIsOpen(false);
-        onSelectChange(option); 
+        onSelectChange(option, placeholder);
+        
+        // Получаем текущее состояние фильтров из локального хранилища
+        const savedFilters = JSON.parse(localStorage.getItem('tourFilters')) || {};
+        
+        // Обновляем выбранное значение в объекте фильтров
+        savedFilters[placeholder] = option;
     };
 
-    //вне документа
+    // Обработка клика вне компонента
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
@@ -35,7 +50,7 @@ const CustomSelect = ({ placeholder, options, onSelectChange  }) => {
     return (
         <div className="custom_select" ref={selectRef}>
             <div className="select_header" onClick={toggleDropdown}>
-                <img src={SelectArrow} alt="op"/>
+                <img src={SelectArrow} alt="op" />
                 <p className="text_mln_f18_l18">{selectedOption}</p>
             </div>
             {isOpen && (

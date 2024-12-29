@@ -1,4 +1,4 @@
-import { AppRouter, Footer, Header, Loading, SMain } from "./utils/components";
+import { AppRouter, Footer, Header, Loading, Modal, SMain } from "./utils/components";
 import { checkAuth } from "./store/slices/authSlice";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
@@ -22,6 +22,14 @@ function App() {
         }
     }, [dispatch]);
 
+    useEffect(() => {
+        localStorage.setItem('tourFilters', JSON.stringify({
+            criterion: '',
+            range: '',
+            change: 'active tour',
+        }));
+    })
+
     return (
         <BrowserRouter>    
             <Header />
@@ -29,6 +37,7 @@ function App() {
                 { isInitialized ? ( <AppRouter /> ) : ( <Loading /> )}
             </SMain>
             <Footer />
+            <Modal/>
         </BrowserRouter>
     );
 }

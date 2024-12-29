@@ -18,7 +18,7 @@ class TourActiveController extends Controller {
 
         const tourActiveData = {id, status};
     
-        const updatedTourActive = await tourService.update(tourActiveData);
+        const updatedTourActive = await tourActiveService.update(tourActiveData);
     
         return res.json(updatedTourActive);
     }
@@ -26,7 +26,7 @@ class TourActiveController extends Controller {
     async getAll(req, res){
         const { status } = req.query;
         
-        const toursActive = await tourService.getAll(status);
+        const toursActive = await tourActiveService.getAll(status);
     
         return res.json(toursActive);
     }

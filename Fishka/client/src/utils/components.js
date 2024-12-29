@@ -26,6 +26,17 @@ export { default as CustomInput} from '../components/CustomInput/CustomInput'
 export { default as TourSection} from '../components/TourSection/TourSection'
 export { default as ButtonChange} from '../components/ButtonChange/ButtonChange'
 export { default as CustomSelect} from '../components/CustomSelect/CustomSelect'
+export { default as CardTour} from '../components/CardTour/CardTour'
+export { default as CardCreateTour} from '../components/CardCreateTour/CardCreateTour'
+
+export { default as Modal} from '../components/Modal/Modal/Modal'
+export { default as NoneLine} from '../components/Modal/NoneLine/NoneLine'
+export { default as InputModal} from '../components/Modal/Input/Input'
+export { default as SelectModal} from '../components/Modal/Select/Select'
+export { default as AddPhoto} from '../components/Modal/AddPhoto/AddPhoto'
+export { default as ButtonModal} from '../components/Modal/ButtonModal/ButtonModal'
+export { default as InputDate} from '../components/Modal/InputDate/InputDate'
+
 
 
 

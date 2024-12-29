@@ -1,0 +1,6 @@
+@import "../../../styles/global";
+
+.button_container{
+    @extend .container_center;
+    gap: 20px;
+}

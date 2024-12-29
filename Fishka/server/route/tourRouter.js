@@ -11,6 +11,6 @@ router.patch('/day', tourController.updateDay)
 router.get('/', tourController.getAll)
 router.get('/gallery', tourController.getAllGallery)
 router.get('/day', tourController.getAllDay)
-router.get('/', tourController.getOne)
+router.get('/one', tourController.getOne)
 
 module.exports = router 

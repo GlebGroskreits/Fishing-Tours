@@ -1,0 +1,48 @@
+@import "../../../styles/global";
+
+.select_modal{
+    height: 39px;
+    width: 240px;
+    border: 0;
+    box-sizing: border-box;
+    @extend .container_between;
+    padding: 0 10px;
+    .custom_select{
+
+        >.select_header{
+            @extend .container_center;
+            gap: 10px;
+    
+            >p{
+                margin-bottom: 2px;
+                color: $text_decoration_black;
+            }
+        }
+    
+        >.options{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: $gray_b2;
+            min-width: 120px;
+            z-index: 1000;
+    
+            >p{
+                @extend .text_mln_f16_l16;
+                color: $text_decoration_black;
+            }
+        }
+    }
+
+    >p{
+        color: rgba($text_decoration_black, 0.7);
+        margin-left: 10px;
+    }
+    
+}
