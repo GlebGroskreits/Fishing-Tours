@@ -73,11 +73,11 @@ const Tour_Active = sequelize.define('tour_active', {
     id_tour: {type: DataTypes.INTEGER, references: { model: Tour, key: 'id' }},
     id_guide: {type: DataTypes.INTEGER, references: { model: Guide, key: 'id_guide' }},
     date_start: {type: DataTypes.DATE, allowNull: true},
-    status: {type: DataTypes.STRING, allowNull: true},
+    status: {type: DataTypes.STRING, defaultValue: "reserve", allowNull: true},
 }, {    
     timestamps: false
 });
-
+  
 const Request = sequelize.define('request', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     id_client: {type: DataTypes.INTEGER, references: { model: User, key: 'id' }},

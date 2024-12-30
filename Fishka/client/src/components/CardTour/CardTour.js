@@ -4,7 +4,7 @@ import './CardTour.scss';
 import { STATIC_URL } from '../../http';
 
 const CardTour = ({tour}) => {
-    console.log(tour)
+
     return (
        <div className='card_tour'>
         {console.log(`${STATIC_URL}${tour.image}`)}
@@ -15,7 +15,7 @@ const CardTour = ({tour}) => {
             <Link to="/selectTour" className='button_more'>
                 <p className='text_mln_f16_l16'>more</p>
             </Link>
-            <p className='text_mln_f16_l16'>date</p>
+            {tour.date_start && <p className='text_mln_f16_l16'> {new Date(tour.date_start).toLocaleDateString('ru-RU')}</p>}
        </div>
     );
 };

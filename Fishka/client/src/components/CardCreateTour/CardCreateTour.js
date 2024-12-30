@@ -3,17 +3,19 @@ import './CardCreateTour.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal, openModal, setHeaderText, setModalContent, setResultContent } from '../../store/slices/modalSlice';
 import { AddPhoto, ButtonModal, InputDate, InputModal, SelectModal } from '../../utils/components';
-import { createTour } from '../../store/slices/tourSlice';
+import { createTour, createTourActive } from '../../store/slices/tourSlice';
+import { getGuide } from '../../store/slices/guideSlice';
 
-const CardCreateTour = ({ type, change }) => {
+const CardCreateTour = ({ type, change, tours }) => {
     const dispatch = useDispatch();
-    const [inputValues, setInputValues] = useState({
-        name: '',
-        duration: '',
-        description: '',
-        image: null,
-    });
-const resultContent = useSelector((state) => state.modal.resultContent)
+
+    const [inputValues, setInputValues] = useState(null);
+    const [guideSelect, setGuideSelect] = useState(null);
+    const [tourSelect, setTourSelect] = useState(null);
+
+    const resultContent = useSelector((state) => state.modal.resultContent)
+    const guide = useSelector((state) => state.guide.guide)
+
     const handleChange = (placeholder, value) => {
         setInputValues((prev) => ({
             ...prev,
@@ -22,7 +24,27 @@ const resultContent = useSelector((state) => state.modal.resultContent)
     };
 
     useEffect(() => {
-        dispatch(setResultContent(inputValues))
+        dispatch(getGuide());
+    }, [])
+
+    useEffect(() => {
+        setGuideSelect(guide.map(guide => ({
+            value: guide.id_guide,
+            option: guide.name + ' ' + guide.surname
+        })));
+    }, [guide]);
+
+    useEffect(() => {
+        setTourSelect(tours.map(tour =>({
+            value: tour.id,
+            option: tour.name
+        })))
+    }, [tours])
+
+    useEffect(() => {
+        dispatch(setResultContent(inputValues));
+
+        tours = tours.map((tour) => tour.name)
     }, [inputValues])
 
 
@@ -46,10 +68,10 @@ const resultContent = useSelector((state) => state.modal.resultContent)
         } else {
             content = (
                 <>
-                    <SelectModal placeholder={'guide'}  options={a} onSelectChange={handleChange} />
-                    <SelectModal placeholder={'guide'}  options={a} onSelectChange={handleChange} />
+                    <SelectModal placeholder={'tour'}  options={tourSelect} onSelectChange={handleChange} />
+                    <SelectModal placeholder={'guide'}  options={guideSelect} onSelectChange={handleChange} />
                     <InputDate placeholder="date start" onInputChange={handleChange} minDate={true} />
-                    {/* <ButtonModal text1={'discard'} text2={'create'} onClick={(data) => dispatch(createTour({tourData: data}))}/> */}
+                    <ButtonModal text1={'discard'} text2={'create'} onClick={(data) => dispatch(createTourActive({tourActiveData: data}))}/>           
                 </>
             );
         }

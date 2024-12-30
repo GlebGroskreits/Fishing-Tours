@@ -6,6 +6,18 @@ class TourService extends BaseService {
     async getTour(type){
         const response = await BaseService.request("get", API_ENDPOINTS.TOUR.GET_TOUR, {params: {type}});
 
+        console.log(response)
+        response.activeTours = response.activeTours.map(at => {
+            const matchingTour = response.tours.find(tour => tour.id === at.id_tour);
+            if (matchingTour) {
+                return {
+                    ...matchingTour, 
+                    ...at            
+                };
+            }
+            return at; 
+        });
+
         return response;
     }
 
@@ -21,6 +33,18 @@ class TourService extends BaseService {
         }
 
         const response = await BaseService.request("post", API_ENDPOINTS.TOUR.CREATE_TOUR, formData);
+
+        return response;
+    }
+
+    async createTourActive(tourActiveDataOld) {
+        const tourActiveData = {
+            id_guide: tourActiveDataOld.guide,
+            id_tour: tourActiveDataOld.tour,
+            date_start: tourActiveDataOld["date start"]
+        }
+
+        const response = await BaseService.request("post", API_ENDPOINTS.TOUR_ACTIVE.CREATE_TOUR_ACTIVE, tourActiveData);
 
         return response;
     }

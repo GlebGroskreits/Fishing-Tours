@@ -111,10 +111,20 @@ const TourSection = ({ bcImage, type }) => {
             </section>
             <section className='tour_card'>
                 <div className='cards'>
-                    {tours.map((tour, index) => (
-                        <CardTour key={index} tour={tour}/>
-                    ))}
-                    <CardCreateTour type={type} change={selectedOptions.change}/>
+                    {selectedOptions.change == 'tour' ? (
+                        <>
+                            {tours.map((tour, index) => (
+                                <CardTour key={index} tour={tour}/>
+                            ))}
+                        </>
+                    ) : (
+                        <>
+                            {activeTours.map((tour, index) => (
+                                <CardTour key={index} tour={tour}/>
+                            ))}
+                        </>
+                    )} 
+                    <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>
                 </div>
                 <div className='paggination'>
                     {/* Пагинация может быть добавлена здесь */}

@@ -14,6 +14,7 @@ const modalSlice = createSlice({
         },
         closeModal(state) {
             state.isOpen = false;
+            state.resultContent = null;
         },
         setHeaderText(state, action){
             state.headerText = action.payload;

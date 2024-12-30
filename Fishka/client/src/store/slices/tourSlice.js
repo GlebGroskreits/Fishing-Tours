@@ -7,9 +7,14 @@ export const getTour = createAsyncThunk('tour/getTour', async ({type}) => {
     return response;
 });
 
-
 export const createTour = createAsyncThunk('tour/createTour', async ({tourData}) => {
     const response = await TourService.createTour(tourData);
+
+    return response;
+});
+
+export const createTourActive = createAsyncThunk('tour/createTourActive', async ({tourActiveData}) => {
+    const response = await TourService.createTourActive(tourActiveData);
 
     return response;
 });
@@ -31,6 +36,9 @@ const tourSlice = createSlice({
             })
             .addCase(createTour.fulfilled, (state, action) => {  
                 state.tours.push(action.payload); 
+            })
+            .addCase(createTourActive.fulfilled, (state, action) => {  
+                state.activeTours.push(action.payload); 
             });
     },
 });

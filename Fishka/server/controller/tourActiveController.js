@@ -4,9 +4,9 @@ const tourActiveService = require("../service/tourActiveService");
 
 class TourActiveController extends Controller {
     async create(req, res) {
-        const { id_tour, date_start } = req.body;
-
-        const tourActiveData = {id_tour, date_start}
+        const { id_guide, id_tour, date_start } = req.body;
+        
+        const tourActiveData = {id_guide, id_tour, date_start}
 
         const tourActive = await tourActiveService.create(tourActiveData);
     

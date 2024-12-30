@@ -3,6 +3,7 @@ import './Select.scss';
 import { SelectArrow } from '../../../utils/icons';
 
 const Select = ({ placeholder, options, onSelectChange }) => {
+    console.log(options)
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(placeholder);
     const selectRef = useRef(null);
@@ -12,9 +13,9 @@ const Select = ({ placeholder, options, onSelectChange }) => {
     };
 
     const handleOptionClick = (option) => {
-        setSelectedOption(option);
+        setSelectedOption(option.option);
         setIsOpen(false);
-        onSelectChange(placeholder, option);
+        onSelectChange(placeholder, option.value);
     };
 
     // Обработка клика вне компонента
@@ -45,7 +46,7 @@ const Select = ({ placeholder, options, onSelectChange }) => {
                                 key={index}
                                 onClick={() => handleOptionClick(option)}
                             >
-                                {option}
+                                {option.option}
                             </p>
                         ))}
                     </div>

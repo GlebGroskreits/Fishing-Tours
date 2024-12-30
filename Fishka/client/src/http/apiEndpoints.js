@@ -15,9 +15,7 @@ export const API_ENDPOINTS = {
         GET_TOUR: 'tour/'
     },
     TOUR_ACTIVE: {
-        GET_ALL_TOUR_ACTIVE: 'tourActive/',
         CREATE_TOUR_ACTIVE: 'tourActive/',
-        UPDATE_TOUR_ACTIVE: 'tourActive/',
     },
     REQUEST: {
         CREATE_REQUEST: 'request/',

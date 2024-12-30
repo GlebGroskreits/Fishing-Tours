@@ -6,7 +6,7 @@ const ApiError = require('../error/ApiError')
 
 class TourActiveService{
     async create(tourActiveData){
-        const tourActive = await Tour_Active.create({tourActiveData})
+        const tourActive = await Tour_Active.create(tourActiveData)
 
         return tourActive;
     }
