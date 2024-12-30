@@ -26,6 +26,9 @@ const TourSection = ({ bcImage, type }) => {
         change: 'active tour',
     });
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
     // Загрузка состояния из локального хранилища
     useEffect(() => {
         const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));
@@ -60,6 +63,13 @@ const TourSection = ({ bcImage, type }) => {
         console.log('Saved settings:', selectedOptions);
         localStorage.setItem('tourFilters', JSON.stringify(selectedOptions));
     };
+
+    const currentTours = selectedOptions.change === 'tour' ? tours : activeTours;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = currentTours.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(currentTours.length / itemsPerPage);
 
     return (
         <>
@@ -111,23 +121,19 @@ const TourSection = ({ bcImage, type }) => {
             </section>
             <section className='tour_card'>
                 <div className='cards'>
-                    {selectedOptions.change == 'tour' ? (
-                        <>
-                            {tours.map((tour, index) => (
-                                <CardTour key={index} tour={tour}/>
-                            ))}
-                        </>
-                    ) : (
-                        <>
-                            {activeTours.map((tour, index) => (
-                                <CardTour key={index} tour={tour}/>
-                            ))}
-                        </>
-                    )} 
+                    {currentItems.map((tour, index) => (
+                        <CardTour key={index} tour={tour}/>
+                    ))}
                     <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>
                 </div>
                 <div className='paggination'>
-                    {/* Пагинация может быть добавлена здесь */}
+                    {totalPages > currentItems.length && [...Array(totalPages)].map((_, index) => (
+                        <div
+                            key={index}
+                            className={`circle ${currentPage === index + 1 ? 'active' : ''}`}
+                            onClick={() => setCurrentPage(index + 1)}
+                        ></div>
+                    ))}
                 </div>
             </section>
             <section className='tour_report'>

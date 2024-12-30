@@ -7,14 +7,14 @@ const tourService = require("../service/tourService");
 
 class TourController extends Controller {
     async create(req, res) {
-        const { name, duration, description } = req.body;
+        const { name, duration, description, type } = req.body;
         const image = req.files ? req.files.image : undefined;
 
         if(!image){
             throw ApiError.badRequest("Фотография обязательная для создания")
         }
 
-        const tourData = {name, description, duration, image}
+        const tourData = {name, description, duration, type, image}
         console.log(tourData)
 
         const tour = await tourService.create(tourData);

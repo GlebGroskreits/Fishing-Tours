@@ -1,4 +1,4 @@
-const {Tour_Active} = require('../model/model')
+const {Tour_Active, Tour} = require('../model/model')
 const uuid = require('uuid')
 const path = require('path')
 
@@ -24,9 +24,16 @@ class TourActiveService{
         return updatedTourActive;
     }
 
-    async getAll(status) {
-        const toursActive = await Tour_Active.findAll({where: {status: status}});
+    async getAll(status, type) {
+        const alltoursActive = await Tour_Active.findAll({where: {status: status}});
     
+        const allTours = await Tour.findAll({ where: { type: type } }); // Предполагаем, что у вас есть поле type
+
+        // Фильтруем активные туры на основе совпадения id_tour и type
+        const toursActive = alltoursActive.filter(activeTour => 
+            allTours.some(tour => tour.id === activeTour.id_tour)
+        );
+
         return toursActive;
     }
 }

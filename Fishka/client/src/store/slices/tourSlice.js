@@ -38,7 +38,13 @@ const tourSlice = createSlice({
                 state.tours.push(action.payload); 
             })
             .addCase(createTourActive.fulfilled, (state, action) => {  
-                state.activeTours.push(action.payload); 
+                const tourId = action.payload.id_tour; // Предполагаем, что у вас есть поле id_tour
+                const foundTour = state.tours.find(tour => tour.id === tourId);
+
+                if (foundTour) {
+                    const newActiveTour = { ...foundTour, ...action.payload };
+                    state.activeTours.push(newActiveTour); 
+                }
             });
     },
 });

@@ -44,7 +44,7 @@ class TourService{
 
     async getAll(type) {
         const tours = await Tour.findAll({where: {type: type}});
-        const activeTours = await tourActiveService.getAll('reserve');
+        const activeTours = await tourActiveService.getAll('reserve', type);
 
         return { tours, activeTours };
     }

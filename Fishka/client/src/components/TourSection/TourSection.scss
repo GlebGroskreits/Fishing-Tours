@@ -27,7 +27,7 @@
         max-width: 487px;
     }
 
-    >p:nth-of-type(1).vipour{
+    >p:nth-of-type(1).viptour{
         max-width: 479px;
     }
 
@@ -147,5 +147,26 @@
         @extend .container_center;
         flex-wrap: wrap;
         gap: 40px;
+    }
+
+    .paggination{
+        display: flex;
+        justify-content: center;
+        margin: 3px 0;
+        gap: 10px;
+
+        .circle {
+            width: 8px;
+            height: 8px;
+            border: 1px solid $text_decoration_black; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            background-color: transparent; 
+            transition: background-color 0.3s, border 0.3s; 
+        }
+        
+        .circle.active {
+            background-color: $text_decoration_black; /* Цвет фона для активного кружочка */
+        }
     }
 }
