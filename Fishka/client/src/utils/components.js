@@ -28,6 +28,9 @@ export { default as ButtonChange} from '../components/ButtonChange/ButtonChange'
 export { default as CustomSelect} from '../components/CustomSelect/CustomSelect'
 export { default as CardTour} from '../components/CardTour/CardTour'
 export { default as CardCreateTour} from '../components/CardCreateTour/CardCreateTour'
+export { default as SelectGallery} from '../components/SelectGallery/SelectGallery'
+export { default as SelectDetails} from '../components/SelectDetails/SelectDetails'
+export { default as SelectDay} from '../components/SelectDay/SelectDay'
 
 export { default as Modal} from '../components/Modal/Modal/Modal'
 export { default as NoneLine} from '../components/Modal/NoneLine/NoneLine'
@@ -36,6 +39,9 @@ export { default as SelectModal} from '../components/Modal/Select/Select'
 export { default as AddPhoto} from '../components/Modal/AddPhoto/AddPhoto'
 export { default as ButtonModal} from '../components/Modal/ButtonModal/ButtonModal'
 export { default as InputDate} from '../components/Modal/InputDate/InputDate'
+
+
+
 
 
 

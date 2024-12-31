@@ -26,3 +26,4 @@ export { default as FArrow } from '../assets/icon/farrow.svg'
 
 export { default as SelectArrow} from '../assets/icon/selectArrow.svg'
 export { default as AddPhotoPlus} from '../assets/icon/addPhoto.svg'
+export { default as Download} from '../assets/icon/download.svg'

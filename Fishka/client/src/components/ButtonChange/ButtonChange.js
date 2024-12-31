@@ -18,9 +18,6 @@ const ButtonChange = ({ text, onClick, typeB }) => {
                 type = 'blue';
             }
         }
-
-        
-
     }else{
         type = 'transparent';   
     }

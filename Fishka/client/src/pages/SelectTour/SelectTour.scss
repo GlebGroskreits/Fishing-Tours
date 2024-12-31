@@ -1,0 +1,49 @@
+@import "../../styles/global";
+
+.select_tour_header{
+    padding: 50px 100px;
+    @extend .container_center;
+    gap: 30px 100px;
+    flex-wrap: wrap;
+    background-color: $gray_b2;
+
+    >img{
+        height: 300px;
+        width: 300px;
+    }
+
+    >.st_text{
+        width: 400px;
+        max-height: 300px;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+
+        >p{
+            color: $text_decoration_black;
+        }
+
+        >p:nth-of-type(2){
+            margin: 15px 0 30px 0;
+            color: rgba($text_decoration_black, 0.8);
+        }
+
+        >p:nth-of-type(3){
+            color: rgba($text_decoration_black, 0.6);
+        }
+    }
+
+    >.st_change{
+        height: fit-content;
+        width: 180px;
+        @extend .container_center;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+
+        >p{
+            color: $text_decoration_black;
+        }
+    }
+}

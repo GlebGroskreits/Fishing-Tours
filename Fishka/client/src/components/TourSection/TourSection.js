@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import './TourSection.scss'; 
 import { ButtonChange, LinkSection, CustomSelect, CardTour, CardCreateTour } from '../../utils/components';
 import { TourBC } from '../../utils/images';
+import { Download } from '../../utils/icons';
 
 const pageLink = {
     link: '/review',
@@ -126,7 +127,7 @@ const TourSection = ({ bcImage, type }) => {
                     ))}
                     <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>
                 </div>
-                <div className='paggination'>
+                <div className={`${totalPages > currentItems.length ? 'paggination' : 'paggination none'}`}>
                     {totalPages > currentItems.length && [...Array(totalPages)].map((_, index) => (
                         <div
                             key={index}
@@ -137,7 +138,10 @@ const TourSection = ({ bcImage, type }) => {
                 </div>
             </section>
             <section className='tour_report'>
-                {/* Отчет может быть добавлен здесь */}
+                <div className="tr_container">
+                    <img src={Download} alt="download" />
+                    <p className="text_mln_f26_l26">download tour</p>
+                </div>
             </section>
             <LinkSection text={pageLink.header} page={pageLink.page} link={pageLink.link} />
         </>

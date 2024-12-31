@@ -146,3 +146,11 @@ footer{
         }
     }
 }
+
+@media(max-width: 539px){
+    footer{
+        .footer_up{
+            padding: 40px 10px;
+        }
+    }
+}
