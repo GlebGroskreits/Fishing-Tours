@@ -3,7 +3,13 @@ import TourService from '../../services/TourService'
 
 export const getTour = createAsyncThunk('tour/getTour', async ({type}) => {
     const response = await TourService.getTour(type);
-    console.log(response)
+
+    return response;
+});
+
+export const changeTour = createAsyncThunk('tour/changeTour', async ({tourData}) => {
+    const response = await TourService.changeTour(tourData);
+
     return response;
 });
 
@@ -23,16 +29,36 @@ const tourSlice = createSlice({
     name: "tour",
     initialState: {
         tours: [],
-        activeTours: []
+        activeTours: [],
+        selectedTour: null,
     },
     reducers: {
-       
+        setSelectedTour(state, action){
+            state.selectedTour = action.payload;
+        }
     },
     extraReducers: (builder) => {  
         builder
             .addCase(getTour.fulfilled, (state, action) => { 
                 state.tours = action.payload.tours;
                 state.activeTours = action.payload.activeTours;
+            })
+            .addCase(changeTour.fulfilled, (state, action) => {  
+                console.log(action.payload)
+                console.log(action.payload)
+                console.log(state.selectedTour)
+                if (state.selectedTour) {
+                    // Обновляем только те поля, которые существуют и отличаются от текущих
+                    const updatedTour = { ...state.selectedTour };
+
+                    Object.keys(action.payload).forEach((key) => {
+                        if (updatedTour[key] !== action.payload[key]) {
+                            updatedTour[key] = action.payload[key];
+                        }
+                    });
+
+                    state.selectedTour = updatedTour;
+                }
             })
             .addCase(createTour.fulfilled, (state, action) => {  
                 state.tours.push(action.payload); 
@@ -49,6 +75,6 @@ const tourSlice = createSlice({
     },
 });
 
-export const {  } = tourSlice.actions;
+export const {  setSelectedTour } = tourSlice.actions;
 
 export default tourSlice.reducer;

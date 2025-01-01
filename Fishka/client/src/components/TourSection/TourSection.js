@@ -94,11 +94,12 @@ const TourSection = ({ bcImage, type }) => {
                             options={options.range} 
                             onSelectChange={(value) => handleSelectChange(value, 'range')}
                         />
-                        <CustomSelect 
-                            placeholder={'change'} 
-                            options={options.change}  
-                            onSelectChange={(value) => handleSelectChange(value, 'change')}
-                        />
+                        {role == 'guide' && 
+                            <CustomSelect 
+                                placeholder={'change'} 
+                                options={options.change}  
+                                onSelectChange={(value) => handleSelectChange(value, 'change')}
+                            />}
                         </div>
                     </div>
                     <div className="tfb_change">
@@ -125,7 +126,7 @@ const TourSection = ({ bcImage, type }) => {
                     {currentItems.map((tour, index) => (
                         <CardTour key={index} tour={tour}/>
                     ))}
-                    <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>
+                    {role == 'guide' && <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>}
                 </div>
                 <div className={`${totalPages > currentItems.length ? 'paggination' : 'paggination none'}`}>
                     {totalPages > currentItems.length && [...Array(totalPages)].map((_, index) => (

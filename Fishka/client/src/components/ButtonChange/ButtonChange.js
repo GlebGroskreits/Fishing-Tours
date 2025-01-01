@@ -6,7 +6,7 @@ const ButtonChange = ({ text, onClick, typeB }) => {
     let type;
 
     if(!typeB){
-        const addApplyReserveTour = ['add', 'apply', 'reserve', 'tour'];
+        const addApplyReserveTour = ['add', 'apply', 'reserve', 'tour', 'start'];
         const refuseChangeResetEnterprisesNow = ['refuse', 'change', 'reset', 'enterprises', 'now'];
         
         if (addApplyReserveTour.includes(text)) {

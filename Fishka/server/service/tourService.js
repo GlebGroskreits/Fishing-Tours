@@ -1,6 +1,7 @@
 const {Tour} = require('../model/model')
 const uuid = require('uuid')
-const path = require('path')
+const path = require('path');
+const fs = require('fs');
 
 const ApiError = require('../error/ApiError');
 const tourActiveService = require('./tourActiveService');
@@ -8,7 +9,7 @@ const tourActiveService = require('./tourActiveService');
 class TourService{
     async create(tourData){
         let filename =  uuid.v4() + ".jpg";
-        console.log(tourData.image)
+
         tourData.image.mv(path.resolve(__dirname,'..', 'static', filename))
 
         const tour = await Tour.create({...tourData, image: filename})
@@ -24,9 +25,23 @@ class TourService{
             throw ApiError.badRequest('Тур не найден');
         }
 
-        const updatedTour = await Tour.update(tourData, { where: { id },  returning: true});
-    
-        return updatedTour;
+        let filename =  uuid.v4() + ".jpg";
+        tourData.image.mv(path.resolve(__dirname,'..', 'static', filename))
+
+        const updatedTour = await Tour.update({...tourData, image: filename}, { where: { id },  returning: true});
+
+        if(tourData.image){
+            const imagePath = path.join(__dirname, '..', 'static', tour.image);
+            fs.unlink(imagePath, (err) => {
+                if (err) {
+                    console.error(`Ошибка при удалении изображения: ${err}`);
+                } else {
+                    console.log(`Старое изображение удалено.`);
+                }
+            });
+        }
+
+        return updatedTour[1][0];
     }
     
     async updateDetails(tourData){

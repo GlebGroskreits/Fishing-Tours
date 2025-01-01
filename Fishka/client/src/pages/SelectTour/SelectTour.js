@@ -1,24 +1,117 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './SelectTour.scss';
-import { ButtonChange } from "../../utils/components";
+import { AddPhoto, ButtonChange, ButtonModal, InputModal } from "../../utils/components";
+import { useDispatch, useSelector } from "react-redux";
+import { STATIC_URL } from "../../http";
+import { changeTour } from "../../store/slices/tourSlice";
+import { openModal, setHeaderText, setModalContent, setResultContent } from "../../store/slices/modalSlice";
 
-const SelectTour = () => {
+const SelectTour = ({}) => {
+
+    const role = useSelector((state) => state.auth.user.role)
+    const tour = useSelector((state) => state.tour.selectedTour)
+
+    const dispatch = useDispatch();
+
+    const [inputValues, setInputValues] = useState(null);
+
+    const handleChange = (placeholder, value) => {
+        setInputValues((prev) => ({
+            ...prev,
+            [placeholder]: value
+        }));
+    };
+
+    useEffect(() => {
+        // dispatch(getGuide());
+    }, [])
+
+    useEffect(() => {
+        if (tour) {
+            // Если tour существует, присваиваем id
+            setInputValues((prev) => ({
+                ...prev,
+                id: tour.id // Присваиваем tour.id
+            }));
+        }
+    }, [tour]);
+
+    useEffect(() => {
+        dispatch(setResultContent(inputValues));
+
+        // tours = tours.map((tour) => tour.name)
+    }, [inputValues])
+
+
+    const handleCreateModal = () => {
+        dispatch(openModal());
+        dispatch(setHeaderText('Change tour'));
+
+        let content = (
+            <>
+                <InputModal placeholder="name" onInputChange={handleChange} />
+                <InputModal placeholder="duration" onInputChange={handleChange} />
+                <InputModal placeholder="description" onInputChange={handleChange} />
+                <AddPhoto placeholder={'image'} onPhotoChange={handleChange} />
+                <ButtonModal text1={'discard'} text2={'create'} onClick={(data) => dispatch(changeTour({tourData: data}))}/>                
+            </> 
+        );
+
+        dispatch(setModalContent(content));
+    };
+
+    const handleRefuse = () => {
+
+    }
+
+    const handleDone = () => {
+        
+    }
+
+    const handleStart = () => {
+
+    }
+
+    const handleReserve = () => {
+        
+    }
+
     return (
-       <section className="select_tour_header">
-        <img src="" alt="" />
-        <div className="st_text">
-            <p className="">Name</p>
-            <p className="">Duration</p>
-            <p className="">Description</p>
-        </div>
-        <div className="st_change">
-            <ButtonChange text={"refuse"} onClick={handleRefuse} />
-            <ButtonChange text={"done"} onClick={handleDone} />
-            <ButtonChange text={"reserve"} onClick={handleReserve} />
-        </div>
-       </section>
+        <>
+            {tour ? (
+                <section className="select_tour_header">
+                    <img src={`${STATIC_URL}${tour.image}`} alt="image" />
+                    <div className="st_text">
+                        <p className="text_mnt_f26_l26">{tour.name}</p>
+                        <p className="text_mln_f22_l22">Duration: {tour.duration} days</p>
+                        <p className="text_mln_f20_l26">{tour.description}</p>
+                    </div>
+                    <div className="st_change">
+                        {tour.date_start && 
+                            (role == 'guide' ? (
+                                <>
+                                    <ButtonChange text={"start"} onClick={handleStart} />
+                                    <ButtonChange text={"done"} onClick={handleDone} />
+                                </>
+                            ) : (
+                                <>
+                                    <ButtonChange text={"reserve"} onClick={handleReserve} />
+                                    <ButtonChange text={"refuse"} onClick={handleRefuse} />
+                                </>
+                            ))}
+                        {tour.date_start && <p className="text_mln_f16_l16">{new Date(tour.date_start).toLocaleDateString('ru-RU')}</p>}
+                        {!tour.date_start &&  <p className="text_mln_f18_l26" onClick={handleCreateModal}>change</p>}
+                    </div>
+                </section>
+            ) : (
+                <section className="select_tour_header">
+                     <p className="text_mnt_f26_l26">Select a tour to view</p>
+                </section>
+            )}
+        </>
+       
 
     );
 }
 
-export default SelectTour;
+export default SelectTour;  

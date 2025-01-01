@@ -45,19 +45,20 @@ class TourController extends Controller {
     }
 
     async update(req, res) {
-        const { name, description, duration, id, id_guide, cost_people } = req.body;
+        const { id, name, duration, description } = req.body;
+        const image = req.files ? req.files.image : undefined;
     
-        let tourData;
+        const tourData = {};
+
+        if (id) tourData.id = id;
+        if (name) tourData.name = name;
+        if (description) tourData.description = description;
+        if (duration) tourData.duration = duration;
+        if (image) tourData.image = image;
+
+        const tour = await tourService.update(tourData);
     
-        if(cost_people){
-            tourData = { id, id_guide, cost_people };
-        }else{
-            tourData = { id, name, description, duration };
-        }
-    
-        const updatedTour = await tourService.update(tourData);
-    
-        return res.json(updatedTour);
+        return res.json(tour);
     }
     
     async updateDay(req, res){

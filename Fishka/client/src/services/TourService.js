@@ -21,6 +21,34 @@ class TourService extends BaseService {
         return response;
     }
 
+    async changeTour(tourData) {
+        const formData = new FormData();
+
+        if (tourData.id) {
+            formData.append('id', tourData.id);
+        }
+
+        if (tourData.name) {
+            formData.append('name', tourData.name);
+        }
+        
+        if (tourData.duration) {
+            formData.append('duration', tourData.duration);
+        }
+        
+        if (tourData.description) {
+            formData.append('description', tourData.description);
+        }
+        
+        if (tourData.image) {
+            formData.append('image', tourData.image);
+        }
+        
+        const response = await BaseService.request("patch", API_ENDPOINTS.TOUR.UPDATE_TOUR, formData);
+        
+        return response;
+    }
+    
     async createTour(tourData) {
         const formData = new FormData();
 

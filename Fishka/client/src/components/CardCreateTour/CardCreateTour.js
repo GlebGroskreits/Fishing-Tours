@@ -47,9 +47,6 @@ const CardCreateTour = ({ type, change, tours }) => {
         tours = tours.map((tour) => tour.name)
     }, [inputValues])
 
-
-    const a = ['sdf', 'sdf']
-
     const handleCreateModal = () => {
         dispatch(openModal());
         dispatch(setHeaderText('New Tour'));
