@@ -13,6 +13,18 @@ export const getGallery = createAsyncThunk('tour/getGallery', async ({id_tour}) 
     return response;
 });
 
+export const getProgram = createAsyncThunk('tour/getProgram', async ({id_tour}) => {
+    const response = await TourService.getProgram(id_tour);
+
+    return response;
+});
+
+export const createProgram = createAsyncThunk('tour/createProgram', async ({tourData}) => {
+    const response = await TourService.createProgram(tourData);
+
+    return response;
+});
+
 export const changeTour = createAsyncThunk('tour/changeTour', async ({tourData}) => {
     const response = await TourService.changeTour(tourData);
 
@@ -59,11 +71,20 @@ const tourSlice = createSlice({
                 console.log(action.payload)
                 state.selectedTour.gallery = action.payload;
             })
+            .addCase(getProgram.fulfilled, (state, action) => { 
+                state.selectedTour.program = action.payload;
+            })
             .addCase(createGallery.fulfilled, (state, action) => { 
                 if(!state.selectedTour.gallery){
                     state.selectedTour.gallery = [];
                 }
                 state.selectedTour.gallery.push(action.payload);
+            })
+            .addCase(createProgram.fulfilled, (state, action) => { 
+                if(!state.selectedTour.program){
+                    state.selectedTour.program = [];
+                }
+                state.selectedTour.program.push(action.payload);
             })
             .addCase(changeTour.fulfilled, (state, action) => {  
                 if (state.selectedTour) {

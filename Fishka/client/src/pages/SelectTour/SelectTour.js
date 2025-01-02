@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './SelectTour.scss';
-import { AddPhoto, ButtonChange, ButtonModal, InputModal, SelectDetails, SelectGallery } from "../../utils/components";
+import { AddPhoto, ButtonChange, ButtonModal, InputModal, SelectDay, SelectDetails, SelectGallery } from "../../utils/components";
 import { useDispatch, useSelector } from "react-redux";
 import { STATIC_URL } from "../../http";
-import { changeTour, getGallery } from "../../store/slices/tourSlice";
+import { changeTour, getGallery, getProgram } from "../../store/slices/tourSlice";
 import { openModal, setHeaderText, setModalContent, setResultContent } from "../../store/slices/modalSlice";
 
 const SelectTour = ({}) => {
@@ -26,8 +26,10 @@ const SelectTour = ({}) => {
         if(tour){
             if(tour.date_start){
                 dispatch(getGallery({id_tour: tour.id_tour}));
+                dispatch(getProgram({id_tour: tour.id_tour}));
             }else{
                 dispatch(getGallery({id_tour: tour.id}));
+                dispatch(getProgram({id_tour: tour.id}));
             }
         }    
     }, [])
@@ -112,6 +114,7 @@ const SelectTour = ({}) => {
                     </section>
                     <SelectGallery />
                     <SelectDetails />
+                    <SelectDay />
                 </>
             ) : (
                 <section className="select_tour_header">

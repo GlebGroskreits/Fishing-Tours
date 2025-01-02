@@ -23,7 +23,26 @@ class TourService extends BaseService {
 
     async getGallery(id_tour){
         const response = await BaseService.request("get", API_ENDPOINTS.TOUR.GET_GALLERY, {params: {id_tour}});
-        console.log(response)
+
+        return response;
+    }
+
+    async getProgram(id_tour){
+        const response = await BaseService.request("get", API_ENDPOINTS.TOUR.GET_PROGRAM, {params: {id_tour}});
+
+        return response;
+    }
+
+    async createProgram(tourData){
+        const formData = new FormData();
+
+        formData.append('id_tour', tourData.id);
+        formData.append('name', tourData.name);
+        formData.append('image', tourData.image);
+        formData.append('description', tourData.description);
+        
+        const response = await BaseService.request("post", API_ENDPOINTS.TOUR.CREATE_PROGRAM, formData);
+
         return response;
     }
 
@@ -35,7 +54,7 @@ class TourService extends BaseService {
         formData.append('image', tourData.image);
         
         const response = await BaseService.request("post", API_ENDPOINTS.TOUR.CREATE_GALLERY, formData);
-        console.log(response)
+
         return response;
     }
 

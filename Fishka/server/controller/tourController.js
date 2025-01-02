@@ -34,12 +34,12 @@ class TourController extends Controller {
     }
 
     async createDay(req, res){
-        const { name, description, address } = req.body;
+        const { name, description, id_tour } = req.body;
         const image = req.files ? req.files.image : undefined;
 
-        const tourDayData = {name, description, address, image}
+        const tourDayData = {name, description, image, id_tour}
 
-        const tourDay = tourDayService.create(tourDayData)
+        const tourDay = await tourDayService.create(tourDayData)
 
         return res.json(tourDay)
     }
@@ -60,16 +60,6 @@ class TourController extends Controller {
         const tour = await tourService.update(tourData);
     
         return res.json(tour);
-    }
-    
-    async updateDay(req, res){
-        const  {id, id_tour, address, description, name } = req.body;
-
-        const tourDayData = {id, id_tour, address, description, name };
-
-        const updatedTourDay = await tourDayService.update(tourDayData);
-
-        return res.json(updatedTourDay)
     }
 
     async getAll(req, res){

@@ -11,7 +11,7 @@ class TourDayService{
 
         const tourDay = await Tour_Day.create({...tourDayData, image: filename}, {returning: true})
 
-        return tourDay[1][0];
+        return tourDay;
     }
 
     async update(tourDayData) {
