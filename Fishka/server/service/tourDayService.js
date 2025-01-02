@@ -9,9 +9,9 @@ class TourDayService{
         let filename =  uuid.v4() + ".jpg"
         tourDayData.image.mv(path.resolve(__dirname,'..', 'static', filename))
 
-        const tourDay = await Tour_Day.create({...tourDayData, image: filename})
+        const tourDay = await Tour_Day.create({...tourDayData, image: filename}, {returning: true})
 
-        return tourDay;
+        return tourDay[1][0];
     }
 
     async update(tourDayData) {

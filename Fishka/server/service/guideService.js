@@ -44,11 +44,11 @@ class GuideService{
                     include: {
                         model: User_Personal,
                         as: 'user_personal', 
-                        attributes: ['name', 'surname']
+                        attributes: ['name', 'surname', 'telephone']
                     }
                 }
             ]
-        });
+        }); 
     
         // Преобразуем массив для получения плоской структуры
         const flatGuides = guides.map(guide => {
@@ -62,7 +62,8 @@ class GuideService{
                 image,
                 seniority,
                 name: user_personal.name,
-                surname: user_personal.surname
+                surname: user_personal.surname,
+                telephone: user_personal.telephone
             };
         });
 

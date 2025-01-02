@@ -11,7 +11,7 @@ class TourGalleryService{
 
         const tourGallery = await Tour_Gallery.create({...tourGalleryData, image: filename})
 
-        return tourGallery;
+        return {image: filename};
     }
     
     async getAll(id_tour) {

@@ -1,1 +1,95 @@
 @import "../../styles/global";
+
+.select_gallery{
+    @extend .container_center;
+    padding: 50px 100px 25px 100px;
+    gap: 30px;
+    flex-direction: column;
+
+    .sg_picture{
+        @extend .container_center;
+        padding: 20px 10px;
+        gap: 40px;
+        flex-wrap: wrap;
+
+        >img{
+            width: 300px;
+            height: 180px;
+            border-radius: 10px;
+        }
+
+        >p{
+            margin-top: 30px;
+            color: $text_decoration_black;
+            text-align: center;
+        }
+    }
+
+    .sg_tool{
+        width: 100%;
+        @extend .container_center;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+
+        .paggination{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 3px 0;
+            gap: 10px;
+    
+            .circle {
+                width: 8px;
+                height: 8px;
+                border: 1px solid $text_decoration_black; 
+                border-radius: 50%; 
+                cursor: pointer; 
+                background-color: transparent; 
+                transition: background-color 0.3s, border 0.3s; 
+            }
+            
+            .circle.active {
+                background-color: $text_decoration_black; /* Цвет фона для активного кружочка */
+            }
+        }
+    
+        .paggination.none{
+            display: none;
+        }
+
+        >input{
+            display: none;
+        }
+
+        .button_change{
+            @extend .container_center;
+            border-radius: 10px;
+            height: 34px;
+            width: 138px;
+            border: 1px solid rgba($text_decoration_black, 0.3);
+            cursor: pointer;
+            background-color: $button_yellow;
+        
+            >p{
+                color: $text_decoration_black;
+                margin-bottom: 2px;
+            }
+        }
+
+    }
+}
+
+@media(max-width: 509px){
+    .select_gallery{
+        padding: 50px 10px 25px 10px;
+
+        .sg_picture{
+            padding: 20px 0px;
+        }
+
+        .sg_tool{
+            align-items: center;
+        }
+    }
+}

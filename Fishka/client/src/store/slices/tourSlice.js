@@ -7,6 +7,12 @@ export const getTour = createAsyncThunk('tour/getTour', async ({type}) => {
     return response;
 });
 
+export const getGallery = createAsyncThunk('tour/getGallery', async ({id_tour}) => {
+    const response = await TourService.getGallery(id_tour);
+
+    return response;
+});
+
 export const changeTour = createAsyncThunk('tour/changeTour', async ({tourData}) => {
     const response = await TourService.changeTour(tourData);
 
@@ -21,6 +27,12 @@ export const createTour = createAsyncThunk('tour/createTour', async ({tourData})
 
 export const createTourActive = createAsyncThunk('tour/createTourActive', async ({tourActiveData}) => {
     const response = await TourService.createTourActive(tourActiveData);
+
+    return response;
+});
+
+export const createGallery = createAsyncThunk('tour/createGallery', async ({tourData}) => {
+    const response = await TourService.createGallery(tourData);
 
     return response;
 });
@@ -43,10 +55,17 @@ const tourSlice = createSlice({
                 state.tours = action.payload.tours;
                 state.activeTours = action.payload.activeTours;
             })
+            .addCase(getGallery.fulfilled, (state, action) => { 
+                console.log(action.payload)
+                state.selectedTour.gallery = action.payload;
+            })
+            .addCase(createGallery.fulfilled, (state, action) => { 
+                if(!state.selectedTour.gallery){
+                    state.selectedTour.gallery = [];
+                }
+                state.selectedTour.gallery.push(action.payload);
+            })
             .addCase(changeTour.fulfilled, (state, action) => {  
-                console.log(action.payload)
-                console.log(action.payload)
-                console.log(state.selectedTour)
                 if (state.selectedTour) {
                     // Обновляем только те поля, которые существуют и отличаются от текущих
                     const updatedTour = { ...state.selectedTour };

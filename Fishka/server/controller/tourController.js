@@ -21,16 +21,16 @@ class TourController extends Controller {
     
         return res.json(tour);
     }
-
+ 
     async createGallery(req, res){
         const {id_tour} = req.body;
         const image = req.files ? req.files.image : undefined;
 
         const tourGalleryData = {id_tour, image}
 
-        const tourGallery = tourGalleryService.create(tourGalleryData)
-
-        return res.json(tourGallery);
+        const tourGalleryImage = await tourGalleryService.create(tourGalleryData)
+        console.log(tourGalleryImage)
+        return res.json(tourGalleryImage);
     }
 
     async createDay(req, res){
@@ -45,7 +45,7 @@ class TourController extends Controller {
     }
 
     async update(req, res) {
-        const { id, name, duration, description } = req.body;
+        const { id, name, duration, description, cost } = req.body;
         const image = req.files ? req.files.image : undefined;
     
         const tourData = {};
@@ -54,6 +54,7 @@ class TourController extends Controller {
         if (name) tourData.name = name;
         if (description) tourData.description = description;
         if (duration) tourData.duration = duration;
+        if (cost) tourData.cost_people = cost;
         if (image) tourData.image = image;
 
         const tour = await tourService.update(tourData);
@@ -79,12 +80,12 @@ class TourController extends Controller {
         return res.json(tours);
     }
 
-    async getAllGallery(req, res){
+    async getGallery(req, res){
         const {id_tour} = req.query; 
 
         const tourGalleries = await tourGalleryService.getAll(id_tour);
 
-        return res.json();
+        return res.json(tourGalleries);
     }
 
     async getAllDay(req, res){

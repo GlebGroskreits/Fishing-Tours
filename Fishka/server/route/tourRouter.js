@@ -9,7 +9,7 @@ router.post('/day', tourController.createDay)
 router.patch('/', tourController.update)
 router.patch('/day', tourController.updateDay)
 router.get('/', tourController.getAll)
-router.get('/gallery', tourController.getAllGallery)
+router.get('/gallery', tourController.getGallery)
 router.get('/day', tourController.getAllDay)
 router.get('/one', tourController.getOne)
 

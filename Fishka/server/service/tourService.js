@@ -25,10 +25,14 @@ class TourService{
             throw ApiError.badRequest('Тур не найден');
         }
 
-        let filename =  uuid.v4() + ".jpg";
-        tourData.image.mv(path.resolve(__dirname,'..', 'static', filename))
-
-        const updatedTour = await Tour.update({...tourData, image: filename}, { where: { id },  returning: true});
+        let updatedTour
+        if(tourData.image){
+            let filename =  uuid.v4() + ".jpg";
+            tourData.image.mv(path.resolve(__dirname,'..', 'static', filename))
+            updatedTour = await Tour.update({...tourData, image: filename}, { where: { id },  returning: true});
+        }else{
+            updatedTour = await Tour.update({...tourData}, { where: { id },  returning: true});
+        }
 
         if(tourData.image){
             const imagePath = path.join(__dirname, '..', 'static', tour.image);

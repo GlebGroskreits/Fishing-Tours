@@ -11,7 +11,6 @@ const CardTour = ({tour}) => {
 
     return (
        <div className='card_tour'>
-        {console.log(`${STATIC_URL}${tour.image}`)}
             <img src={`${STATIC_URL}${tour.image}`} alt="" />
             <p className='text_mnt_f24_l24'>{tour.name}</p>
             <p className='text_mln_f18_l18'> Duration: {tour.duration} days</p>
