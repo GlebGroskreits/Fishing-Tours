@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { STATIC_URL } from "../../http";
 import { changeTour, getGallery, getProgram } from "../../store/slices/tourSlice";
 import { openModal, setHeaderText, setModalContent, setResultContent } from "../../store/slices/modalSlice";
+import { getGuide } from "../../store/slices/guideSlice";
 
 const SelectTour = ({}) => {
 
@@ -23,6 +24,7 @@ const SelectTour = ({}) => {
     };
 
     useEffect(() => {
+        dispatch(getGuide())
         if(tour){
             if(tour.date_start){
                 dispatch(getGallery({id_tour: tour.id_tour}));

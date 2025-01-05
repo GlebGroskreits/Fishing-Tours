@@ -139,6 +139,35 @@ const Review = () => {
         </section>
         <section className="review_person">
             <HeaderSection textUp={"Leave a review"} textLow={"share your experience with others"} />
+            <div className="rp_cards">        
+                {review ? (
+                    <>
+                        {review.map((rev, index) => { // Убираем лишний review &&
+                            return ( // Добавляем return
+                                <div className="rpc_card" key={index}> {/* Добавляем key для rpc_card */}
+                                    <div className="rpc_text">
+                                        <span>
+                                            <p className="text_mnt_f26_l26">{rev.userName} {rev.userSurname}</p> 
+                                            <p className="text_mln_f22_l22">{rev.tour ? `Tour ${rev.tour}` : 'Enterproses'}</p>
+                                        </span>
+                                        <div className="rpc_image">
+                                            {[...Array(rev.raiting)].map((_, index) => ( 
+                                                <img key={index} src={StarF} alt={rev.raiting} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <p className="text_mln_f20_l26">{rev.description}</p>
+                                </div>
+                            );
+                        })}
+                    </>
+                ) : (
+                    <>
+                        <p className="text_mnt_f26_l26">No content in review</p>
+                    </>
+                )}
+            </div>
+
         </section>
         <section className='tour_report'>
             <div className="tr_container">

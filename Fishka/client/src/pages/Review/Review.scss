@@ -91,6 +91,7 @@
         @extend .container_center;
         gap: 50px 40px;
         flex-wrap: wrap;
+        width: 100%;
 
         .rpc_card{
             background-color: $gray_e6;
@@ -100,11 +101,40 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
+            min-height: 221px;
+            padding: 30px;
+            box-sizing: border-box;
 
-            >div{
-                width: 100%;
+            p{
+                color: $text_decoration_black;
             }
 
+            >.rpc_text{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                >span{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                >.rpc_image{
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 5px;
+                    justify-content: center;
+
+                    >img{
+                        height: 20px;
+                        width: 20px;
+                    }
+                }
+            }
+
+        
             >p{
                 color: rgba($text_decoration_black, 0.6);
             }
@@ -138,6 +168,38 @@
             display: none;
         }
     }
+}
+
+@media(max-width: 640px){
+    .review_person{
+        .rp_cards{
+            .rpc_card{
+                >.rpc_text{
+                    justify-content: center;
+                    gap: 20px;
+                    flex-direction: column;
+
+                    >span{
+                        align-items: center;
+                    }
+
+                    >.rpc_image{
+                        width: 100%;
+                    }
+                }
+
+                >p{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 509px){
+    .review_person{
+        padding: 25px 10px 20px 10px;
+    }   
 }
 
 .tour_report{
