@@ -4,6 +4,7 @@ import { TourSection } from "../../utils/components";
 import { VIPTourBC } from "../../utils/images";
 import { useDispatch } from "react-redux";
 import { getTour } from "../../store/slices/tourSlice";
+import { getGuide } from "../../store/slices/guideSlice";
 
 const bcImage ={
     image: VIPTourBC,
@@ -15,6 +16,7 @@ const TourVIP = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getGuide())
         dispatch(getTour({type: 'vip'}));
     })
 

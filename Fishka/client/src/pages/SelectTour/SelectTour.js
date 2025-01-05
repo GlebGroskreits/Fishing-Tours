@@ -23,8 +23,7 @@ const SelectTour = ({}) => {
         }));
     };
 
-    useEffect(() => {
-        dispatch(getGuide())
+    useEffect(() => { 
         if(tour){
             if(tour.date_start){
                 dispatch(getGallery({id_tour: tour.id_tour}));
