@@ -69,7 +69,15 @@
     color: $main_white;
 }
 
+.text_mnt_f20_l22 {
+    @extend .text_Montserrat;
 
+    font-size: 20px; 
+    font-weight: 600; 
+    line-height: 22px;
+
+    color: $main_white;
+}
 
 //---------------------------------MALLANNA------------------------------------
 .text_Mallanna {

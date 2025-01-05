@@ -1,0 +1,144 @@
+@import '../../styles/global';
+
+.personal_info{
+    padding: 50px 100px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;  
+    gap: 50px;
+    flex-wrap: wrap;
+
+    .pi_pi_box{
+        width: 300px;
+        padding: 20px;
+        box-sizing: border-box;
+        gap: 20px;
+        background-color: $gray_e6;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+
+        >div{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            >.big{
+                color: $text_decoration_black;
+            }
+    
+            >.small{
+                color: rgba($text_decoration_black, 0.8);
+            }
+        }
+        
+    }
+
+    .pi_pi{
+        display: flex;
+        flex-direction: column;
+        width: 620px;
+        gap: 30px;
+
+        >.pi_box{
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            min-width: 300px;
+            width: 100%;
+            gap: 25px;
+            margin-top: 20px;
+        }
+    
+        >.pi_tool{
+            display: flex;
+            width: 100%;
+        }
+    
+        >.pi_tours{
+            @extend .container_center;
+            gap: 20px;
+            flex-wrap: wrap;
+    
+            >.card_tour{
+                height: 160px;
+                box-sizing: border-box;
+                padding-top: 20px;
+            }
+        }
+    }    
+}
+
+@media(max-width: 1169px){
+    .personal_info{
+        justify-content: center;
+
+        .pi_pi_box{
+            >div{
+                text-align: center;
+                align-items: center;
+            }
+        }
+
+        .pi_pi{
+            width: 100%;
+        }
+    }
+}
+
+@media(max-width: 509px){
+    .personal_info{
+        justify-content: center;
+        padding: 50px 10px;
+
+        .pi_pi{
+            width: 100%;
+
+            >.pi_box{
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+
+.setting{
+    padding: 25px 100px 50px 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .s_button{
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        >.sb_text{
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            >p{
+                color: $text_decoration_black;
+            }
+        }
+    }
+}
+
+@media(max-width: 587px){
+    .setting{
+        align-items: center;
+        .s_button{
+            flex-direction: column;
+            >.sb_text{
+                flex-direction: column;
+            }
+        }
+    }
+}

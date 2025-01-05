@@ -9,7 +9,7 @@ import { getGuide } from "../../store/slices/guideSlice";
 
 const SelectTour = ({}) => {
 
-    const role = useSelector((state) => state.auth.user.role)
+    const {id, role} = useSelector((state) => state.auth.user)
     const tour = useSelector((state) => state.tour.selectedTour)
 
     const dispatch = useDispatch();
@@ -69,10 +69,6 @@ const SelectTour = ({}) => {
         dispatch(setModalContent(content));
     };
 
-    const handleRefuse = () => {
-
-    }
-
     const handleDone = () => {
         
     }
@@ -106,7 +102,6 @@ const SelectTour = ({}) => {
                                 ) : (
                                     <>
                                         <ButtonChange text={"reserve"} onClick={handleReserve} />
-                                        <ButtonChange text={"refuse"} onClick={handleRefuse} />
                                     </>
                                 ))}
                             {tour.date_start && <p className="text_mln_f16_l16">{new Date(tour.date_start).toLocaleDateString('ru-RU')}</p>}
