@@ -1,0 +1,285 @@
+@import '../../styles/global';
+
+.review_gallery{
+    padding: 50px 100px;
+    box-sizing: border-box;
+    @extend .container_center;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+
+    >.sg_picture{
+        @extend .container_center;
+        gap: 40px;
+        flex-wrap: wrap;
+        .sgp_card{
+            width: 300px;
+            gap: 25px;
+            display: flex;
+            flex-direction: column;
+
+            >img{
+                width: 300px;
+                height: 180px;
+                border-radius: 10px;
+            }
+
+            .sgpc_box{
+                background-color: $gray_e6;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                box-sizing: border-box;
+                gap: 14px;
+                border-radius: 10px;
+                height: 128px;
+
+                >p{
+                    color: $text_decoration_black;
+                }
+
+                >p:nth-of-type(2){
+                    color: rgba($text_decoration_black, 0.8);
+                }
+            }
+        }
+
+        >p{
+            color: $text_decoration_black;
+        }
+    }
+
+    >.sg_tool{
+        .paggination{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 3px 0;
+            gap: 10px;
+    
+            .circle {
+                width: 8px;
+                height: 8px;
+                border: 1px solid $text_decoration_black; 
+                border-radius: 50%; 
+                cursor: pointer; 
+                background-color: transparent; 
+                transition: background-color 0.3s, border 0.3s; 
+            }
+            
+            .circle.active {
+                background-color: $text_decoration_black; /* Цвет фона для активного кружочка */
+            }
+        }
+    
+        .paggination.none{
+            display: none;
+        }
+    }
+    
+}
+
+.review_person{
+    padding: 25px 100px 20px 100px;
+    box-sizing: border-box;
+    @extend .container_center;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+
+    .rp_cards{
+        @extend .container_center;
+        gap: 50px 40px;
+        flex-wrap: wrap;
+
+        .rpc_card{
+            background-color: $gray_e6;
+            border-radius: 10px;
+            max-width: 440px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            >div{
+                width: 100%;
+            }
+
+            >p{
+                color: rgba($text_decoration_black, 0.6);
+            }
+        }
+    }
+
+    >.rp_tool{
+        .paggination{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 3px 0;
+            gap: 10px;
+    
+            .circle {
+                width: 8px;
+                height: 8px;
+                border: 1px solid $text_decoration_black; 
+                border-radius: 50%; 
+                cursor: pointer; 
+                background-color: transparent; 
+                transition: background-color 0.3s, border 0.3s; 
+            }
+            
+            .circle.active {
+                background-color: $text_decoration_black; /* Цвет фона для активного кружочка */
+            }
+        }
+    
+        .paggination.none{
+            display: none;
+        }
+    }
+}
+
+.tour_report{
+    @extend .container_center;
+    padding: 0 100px 30px 100px;
+    box-sizing: border-box;
+
+    .tr_container{
+        display: flex;
+        height: fit-content;
+        width: 100%;
+        padding-right: 50px;
+        box-sizing: border-box;
+        justify-content: flex-end;
+        gap: 20px;
+        align-items: center;
+
+        >img{
+            height: 22px;
+            width: 22px;
+        }
+
+        >p{
+            color: $text_decoration_black;
+        }
+    }
+}
+
+@media(max-width: 839px){
+    .tour_report{
+        padding: 0 0 30px 0;
+        
+        .tr_container{
+            justify-content: center;
+            padding-right: 0;
+        }
+    }
+}
+
+.review_add{
+    background-color: $gray_e6;
+    width: 100%;
+    @extend .container_center;
+    flex-direction: column;
+    padding: 50px 100px;
+    box-sizing: border-box;
+    gap: 40px;
+
+    p{
+        color: $text_decoration_black;
+    }
+
+    .ra_perfom{
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 100px;
+        width: 100%;
+
+        .rap_box{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: fit-content;
+
+            .rap_box_button{
+                display: flex;
+                gap: 25px;
+            }
+
+            .stars{
+                @extend .container_center;
+                height: 30px;
+                gap: 10px;
+
+                >img{
+                    height: 20px;
+                    width: 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .ra_desc{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+
+        input{
+            max-width: 540px;
+            min-width: 300px;
+            @extend .text_mln_f18_l18;
+            width: 100%;
+            height: 39px;
+            background-color: transparent;
+            outline: none;
+            border: 0;
+            border-bottom: 1px solid $text_decoration_black;
+            color: $main_black; 
+            padding-left: 5px;
+            padding-right: 44px;
+            box-sizing: border-box;
+        }
+
+        input::placeholder{
+            color: rgba($text_decoration_black, 0.8);
+            @extend .text_mln_f18_l18;
+            margin-left: 5px;
+        }
+    }
+
+    .ra_send{
+        @extend .container_center;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        >p{
+            color: rgba($text_decoration_black, 0.6)
+        }
+    }
+}
+
+@media(max-width: 509px){
+    .review_add{
+        padding: 50px 10px;
+
+        .ra_perfom{
+            justify-content: center;
+        }
+
+        .ra_desc{
+            justify-content: center;
+            align-items: center;
+
+            >input{
+                width: 300px;
+                margin: 0 auto;
+            }
+        }
+    }
+}

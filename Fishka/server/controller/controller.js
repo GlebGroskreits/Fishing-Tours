@@ -23,7 +23,7 @@ class Controller {
     
     // static checkId(id, fieldName = 'id') {
     //     if (!id || isNaN(id) || parseInt(id) <= 0) {
-    //         throw ApiError.badRequest(`Некорректный идентификатор: ${fieldName}`);
+    //         throw ApiError.badRequest(`Некорректный идентификатор: ${fieldName}`); 
     //     }   
     // }
 

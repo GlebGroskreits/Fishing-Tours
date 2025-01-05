@@ -6,7 +6,7 @@ const CustomSelect = ({ placeholder, options, onSelectChange }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(placeholder);
     const selectRef = useRef(null);
-
+    console.log('sdfdsfo',options)
     // Загрузка выбранного значения из локального хранилища
     useEffect(() => {
         const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));

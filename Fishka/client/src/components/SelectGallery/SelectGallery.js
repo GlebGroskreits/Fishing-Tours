@@ -38,7 +38,7 @@ const SelectGallery = () => {
             dispatch(createGallery({tourData: {id: tour.id_tour, image: file}}))
         }
     }
-    console.log(gallery)
+
     return (
         <section className="select_gallery">
             <HeaderSection textUp={"Gallery"} textLow={"best moments on tour"} />

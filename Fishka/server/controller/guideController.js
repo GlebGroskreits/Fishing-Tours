@@ -27,7 +27,7 @@ class GuideController extends Controller {
 
     async getAll(req, res) {//
         const guides = await guideService.getAll();
-    
+        
         return res.json(guides);
     }
 }

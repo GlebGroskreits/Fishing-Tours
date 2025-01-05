@@ -28,6 +28,6 @@ export const API_ENDPOINTS = {
     },
     REVIEW: {
         CREATE_REVIEW: 'review/',
-        GET_ALL_REVIEW: 'review/'
+        GET_REVIEW: 'review/'
     }
 };

@@ -5,9 +5,7 @@ const reviewService = require("../service/reviewService");
 
 class ReviewController extends Controller {
     async create(req, res) {
-        const { id_client, id_tour, raiting, description } = req.body;
-
-        const reviewData = { id_client, id_tour, raiting, description }
+        const { reviewData } = req.body;
 
         const review = await reviewService.create(reviewData);
     

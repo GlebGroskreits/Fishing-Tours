@@ -31,6 +31,9 @@
         border-radius: 10px;
         background-color: $gray_b2;
         min-width: 120px;
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
 
         >p{
             @extend .text_mln_f18_l18;
