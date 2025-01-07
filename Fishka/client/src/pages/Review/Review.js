@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { REV1, REV2, REV3 } from "../../utils/images";
 import { getTour } from "../../store/slices/tourSlice";
 import { createReview, getReview } from "../../store/slices/reviewSlice";
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 const gallery = [
     {
@@ -102,6 +104,45 @@ const Review = () => {
         dispatch(createReview({id_client: id, id_tour: selectedTour ? selectTour.id : null , raiting: activeStarsCount, description: reviewText }))
     };
 
+    const handleDownloadExcel = () => {
+        const data = review.map(rev => ({
+            Name_tour: rev.tour ? rev.tour : 'enterprices',
+            Description: rev.description,
+            Raiting: rev.raiting,
+            User: `${rev.userName} ${rev.userSurname}`
+        }));
+    
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Tours");
+    
+        // Устанавливаем выравнивание по центру (горизонтально и вертикально)
+        const range = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                const cell = worksheet[XLSX.utils.encode_cell({ r: R, c: C })];
+                if (cell) {
+                    cell.s = {
+                        alignment: { vertical: "center", horizontal: "center" },
+                        wrapText: true // Разрешаем перенос текста
+                    };
+                }
+            }
+        }
+    
+        // Установка ширины столбцов
+        worksheet['!cols'] = [
+            { wpx: 150 }, 
+            { wpx: 500 }, 
+            { wpx: 50 }, 
+            { wpx: 200 }, 
+        ];
+    
+        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+        saveAs(blob, "tour_report.xlsx");
+    };
+
     return (
        <>
         <section className="review_gallery">
@@ -171,8 +212,8 @@ const Review = () => {
         </section>
         <section className='tour_report'>
             <div className="tr_container">
-                <img src={Download} alt="download" />
-                <p className="text_mln_f26_l26">download review</p>
+                <img src={Download} alt="download"  onClick={handleDownloadExcel}/>
+                <p className="text_mln_f26_l26"  onClick={handleDownloadExcel}>download review</p>
             </div>
         </section>
         <section className="review_add">

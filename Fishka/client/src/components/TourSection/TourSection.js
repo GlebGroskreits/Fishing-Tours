@@ -5,7 +5,6 @@ import { ButtonChange, LinkSection, CustomSelect, CardTour, CardCreateTour } fro
 import { TourBC } from '../../utils/images';
 import { Download } from '../../utils/icons';
 import { getGuide } from '../../store/slices/guideSlice';
-import { jsPDF } from 'jspdf';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
