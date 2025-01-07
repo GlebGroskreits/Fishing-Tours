@@ -78,7 +78,7 @@ const SelectDay = ({}) => {
                 <p className='text_mnt_f26_l26'>No program of tour</p>
             )}
             <div className="sd_toolb">
-                <ButtonChange text={"add"} onClick={handleCreateModal} />
+            {!tour.date_start && <ButtonChange text={"add"} onClick={handleCreateModal} />}
             </div>
         </section>
     );

@@ -1,6 +1,7 @@
 const {Tour_Active, Tour} = require('../model/model')
 const uuid = require('uuid')
 const path = require('path')
+const { Op } = require('sequelize');
 
 const ApiError = require('../error/ApiError')
 
@@ -19,14 +20,20 @@ class TourActiveService{
             throw ApiError.badRequest('Активный тур не найден');
         }
 
-        const updatedTourActive = await Tour.update(tourActiveData, { where: { id },  returning: true});
+        const updatedTourActive = await Tour_Active.update(tourActiveData, { where: { id },  returning: true});
     
-        return updatedTourActive;
+        return updatedTourActive; 
     }
 
     async getAll(status, type) {
-        const alltoursActive = await Tour_Active.findAll({where: {status: status}});
-    
+        const alltoursActive = await Tour_Active.findAll({
+            where: {
+                status: {
+                    [Op.or]: ['reserve', 'now'], // Фильтруем по статусам "reserve" и "nav"
+                },
+            },
+        });
+         
         const allTours = await Tour.findAll({ where: { type: type } }); // Предполагаем, что у вас есть поле type
 
         // Фильтруем активные туры на основе совпадения id_tour и type

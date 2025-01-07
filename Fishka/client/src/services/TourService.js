@@ -117,6 +117,18 @@ class TourService extends BaseService {
 
         return response;
     }
+
+    async createRequest(requestData){
+        const response = await BaseService.request("post", API_ENDPOINTS.REQUEST.CREATE_REQUEST, {requestData});
+
+        return response;
+    }
+
+    async updateActiveTour(id, status){
+        const response = await BaseService.request("patch", API_ENDPOINTS.TOUR_ACTIVE.UPDATE_TOUR_ACTIVE, {id, status});
+
+        return response;
+    }
 }
 
 const TourServiceInstance = new TourService();

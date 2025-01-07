@@ -88,15 +88,31 @@ class UserService {
     async update(userData){
         const {id_user} = userData;
 
-        const user = await Guide.findByPk(id_user);
+        const user = await User_Personal.findByPk(id_user);
         if (!user) {
             throw ApiError.badRequest('Пользователь не найден');
         }
         
-        const updatedUser = await Guide.update(userData, { where: { id_user: id_user },  returning: true});
+        const updatedUser = await User_Personal.update(userData, { where: { id_user: id_user },  returning: true});
     
         return updatedUser;
+    } 
+
+    async getOne(id_user){
+        const user = await User.findOne({
+            where: { id: id_user }, // Предполагается, что id_user — это id пользователя из таблицы User
+            include: [
+                {
+                    model: User_Personal,
+                    as: 'user_personal',
+                    attributes: ['name', 'surname', 'patronymic', 'telephone', 'birthday'], // Укажите нужные поля из User_Personal
+                },
+            ],
+            attributes: ['email'], // Укажите, что нужно вернуть поле email из таблицы User
+        });
+        
+        return user;
     }
-}
+} 
 
 module.exports = new UserService();

@@ -8,13 +8,10 @@ import { STATIC_URL } from '../../http';
 const SelectGallery = () => {
 
     const dispatch = useDispatch()
-
+    const role = useSelector((state) => state.auth.user.role)
     const tour = useSelector((state) => state.tour.selectedTour);
     const gallery = useSelector((state) => state.tour.selectedTour.gallery)
     
-    useEffect(() => {
-
-    }, [])
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 3;
@@ -64,10 +61,14 @@ const SelectGallery = () => {
                         ></div>
                     ))}
                 </div>}
-                <input type="file" accept="image/*" onChange={handleAdd} id="file-upload"/>
-                <label htmlFor="file-upload" className="button_change">
-                    <p className='text_mln_f18_l18'>add</p>
-                </label>
+                {role !='client' && 
+                    <>
+                        <input type="file" accept="image/*" onChange={handleAdd} id="file-upload"/>
+                        <label htmlFor="file-upload" className="button_change">
+                            <p className='text_mln_f18_l18'>add</p>
+                        </label>
+                    </>
+                }
             </div>
         </section>
     );

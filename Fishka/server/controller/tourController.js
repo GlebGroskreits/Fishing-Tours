@@ -62,12 +62,12 @@ class TourController extends Controller {
         return res.json(tour);
     }
 
-    async getAll(req, res){
+    async getAll(req, res){ 
         const { type } = req.query;
-        
+        console.log(type)
         const tours = await tourService.getAll(type);
 
-        return res.json(tours);
+        return res.json(tours); 
     }
 
     async getGallery(req, res){
@@ -88,7 +88,7 @@ class TourController extends Controller {
 
     async getOne(req, res){
         const { id } = req.query;
-
+ 
         const tour = await tourService.getOne(id);
 
         return res.json(tour);

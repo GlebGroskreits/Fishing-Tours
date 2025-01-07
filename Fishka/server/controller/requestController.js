@@ -4,20 +4,26 @@ const ApiError = require("../error/ApiError");
 const Controller = require("./controller");
 
 class RequestController extends Controller {
-    async create(req, res) {
-        const { id_client, id_tour } = req.body;
+    async create(req, res) { 
+        const { requestData } = req.body;
 
-        const requestData = {id_client, id_tour}
-
-        const request = await guideService.create(requestData);
+        const request = await requestService.create(requestData); 
     
         return res.json(request);
     }
 
-    async getAll(req, res) {
+    async getAll(req, res) { 
         const {id_client} = req.query;
 
         const requests = await requestService.getAll(id_client);
+    
+        return res.json(requests);
+    }
+
+    async getAllGuide(req, res) { 
+        const {id_guide} = req.query;
+
+        const requests = await requestService.getAllGuide(id_guide);
     
         return res.json(requests);
     }

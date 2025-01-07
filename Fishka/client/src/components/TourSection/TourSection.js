@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './TourSection.scss'; 
 import { ButtonChange, LinkSection, CustomSelect, CardTour, CardCreateTour } from '../../utils/components';
 import { TourBC } from '../../utils/images';
 import { Download } from '../../utils/icons';
+import { getGuide } from '../../store/slices/guideSlice';
 
 const pageLink = {
     link: '/review',
@@ -18,6 +19,8 @@ const options = {
 };
 
 const TourSection = ({ bcImage, type }) => {
+    const dispatch = useDispatch();
+
     const role = useSelector((state) => state.auth.user.role);
     const {tours, activeTours} = useSelector((state) => state.tour)
 
@@ -30,8 +33,12 @@ const TourSection = ({ bcImage, type }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredTours, setFilteredTours] = useState([]);
+    
     // Загрузка состояния из локального хранилища
     useEffect(() => {
+        dispatch(getGuide())
         const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));
         if (savedFilters) {
             setSelectedOptions(savedFilters);
@@ -45,9 +52,36 @@ const TourSection = ({ bcImage, type }) => {
         }));
     };
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSearch = () => {
+        // Логика поиска уже реализована в фильтрации
+    };
+
     const handleApply = () => {
         console.log('Applied filters:', selectedOptions);
-        // Здесь можно добавить логику применения фильтров
+        
+        const currentTours = selectedOptions.change === 'tour' ? tours : activeTours;
+
+        // Фильтрация
+        const newFilteredTours = currentTours.filter((tour) => 
+            tour.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        // Сортировка
+        const sortedTours = newFilteredTours.sort((a, b) => {
+            if (selectedOptions.criterion === 'duration') {
+                return selectedOptions.range === 'a - z' ? a.duration - b.duration : b.duration - a.duration;
+            } else {
+                return selectedOptions.range === 'a - z' 
+                    ? a.name.localeCompare(b.name) 
+                    : b.name.localeCompare(a.name);
+            }
+        });
+
+        setFilteredTours(sortedTours);
     };
 
     const handleReset = () => {
@@ -56,7 +90,7 @@ const TourSection = ({ bcImage, type }) => {
             range: '',
             change: 'active tour',
         });
-        // localStorage.removeItem('tourFilters'); // Удаляем сохраненные фильтры
+        setSearchTerm(''); // Очищаем поле поиска
         localStorage.setItem('tourFilters', JSON.stringify(selectedOptions));
     };
 
@@ -65,12 +99,11 @@ const TourSection = ({ bcImage, type }) => {
         localStorage.setItem('tourFilters', JSON.stringify(selectedOptions));
     };
 
-    const currentTours = selectedOptions.change === 'tour' ? tours : activeTours;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = currentTours.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
 
-    const totalPages = Math.ceil(currentTours.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredTours.length / itemsPerPage);
 
     return (
         <>
@@ -112,11 +145,11 @@ const TourSection = ({ bcImage, type }) => {
                     <div className='tfb_name'>
                         <p className='text_mnt_f26_l26'>Name</p>
                         <div className='tfb_select'>
-                           <input type="text" placeholder='Search..'/>
+                           <input type="text" placeholder='Search..' value={searchTerm} onChange={handleSearchChange} />
                         </div>
                     </div>
                     <div className="tfb_change">
-                        <ButtonChange text={"apply"} onClick={handleApply} />
+                        <ButtonChange text={"apply"} onClick={handleSearch} />
                         <ButtonChange text={"reset"} onClick={handleReset} />
                     </div>
                 </div>

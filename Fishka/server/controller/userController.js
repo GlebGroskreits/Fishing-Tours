@@ -86,30 +86,27 @@ class UserController extends Controller {
 
         const userData = await userService.refresh(refreshToken);
 
-        res.cookie("refreshToken", userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true,});
+        res.cookie("refreshToken", userData.refreshToken, {maxAge: 30  * 24 * 60 * 60 * 1000, httpOnly: true,});
 
         return res.json(userData);
     }
 
-    async update(req, res){
-        const { id_user, name, surname, patronymic, birthday, telephone} = req.body
+    async change(req, res){
+        const { personalData } = req.body
         
-        const userData = { id_user, name, surname, patronymic, birthday, telephone}
-        
-        const updatedUser = await userService.update(userData);
-        
+        const updatedUser = await userService.update(personalData);
+          
         return res.json(updatedUser);
     }
 
 
-    // async getOne(req, res) {
-    //     const { id } = req.params;
-    //     Controller.checkId(id);
-        
-    //     const user = await userService.getOne(id);
+    async getOne(req, res) {
+        const { id_user } = req.query;
 
-    //     return res.json(user);
-    // }
+        const user = await userService.getOne(id_user);
+
+        return res.json(user);
+    }
 }
 
 module.exports = new UserController();

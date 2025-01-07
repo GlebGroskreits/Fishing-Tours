@@ -49,6 +49,20 @@ export const createGallery = createAsyncThunk('tour/createGallery', async ({tour
     return response;
 });
 
+export const createRequest = createAsyncThunk('tour/createRequest', async({id_client, id_tour}) => {
+    const requestData = {id_client, id_tour};
+
+    const response = await TourService.createRequest(requestData);
+
+    return response;
+})
+
+export const updateActiveTour = createAsyncThunk('tour/updateActiveTour', async({id, status}) => {
+    const response = await TourService.updateActiveTour(id, status);
+
+    return response;
+})
+
 const tourSlice = createSlice({
     name: "tour",
     initialState: {

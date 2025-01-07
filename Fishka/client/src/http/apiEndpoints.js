@@ -3,7 +3,9 @@ export const API_ENDPOINTS = {
         REGISTRATION: 'user/registration',
         REFRESH: 'user/refresh',
         LOGOUT: 'user/logout',
-        LOGIN: 'user/login'
+        LOGIN: 'user/login',
+        GET_USER: 'user/',
+        CHANGE_USER: 'user/'
     },
     GUIDE: {
         CREATE_GUIDE: 'guide/',
@@ -21,10 +23,12 @@ export const API_ENDPOINTS = {
     },
     TOUR_ACTIVE: {
         CREATE_TOUR_ACTIVE: 'tourActive/',
+        UPDATE_TOUR_ACTIVE: 'tourActive/',
     },
     REQUEST: {
         CREATE_REQUEST: 'request/',
-        GET_ALL_REQUEST: 'request/'
+        GET_REQUEST: 'request/',
+        GET_REQUEST_GUIDE: 'request/gud'
     },
     REVIEW: {
         CREATE_REVIEW: 'review/',

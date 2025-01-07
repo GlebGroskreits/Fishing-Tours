@@ -3,7 +3,7 @@ import './SelectTour.scss';
 import { AddPhoto, ButtonChange, ButtonModal, InputModal, SelectDay, SelectDetails, SelectGallery } from "../../utils/components";
 import { useDispatch, useSelector } from "react-redux";
 import { STATIC_URL } from "../../http";
-import { changeTour, getGallery, getProgram } from "../../store/slices/tourSlice";
+import { changeTour, createRequest, getGallery, getProgram, updateActiveTour } from "../../store/slices/tourSlice";
 import { openModal, setHeaderText, setModalContent, setResultContent } from "../../store/slices/modalSlice";
 import { getGuide } from "../../store/slices/guideSlice";
 
@@ -11,7 +11,7 @@ const SelectTour = ({}) => {
 
     const {id, role} = useSelector((state) => state.auth.user)
     const tour = useSelector((state) => state.tour.selectedTour)
-
+    console.log(tour)
     const dispatch = useDispatch();
 
     const [inputValues, setInputValues] = useState(null);
@@ -47,8 +47,6 @@ const SelectTour = ({}) => {
 
     useEffect(() => {
         dispatch(setResultContent(inputValues));
-
-        // tours = tours.map((tour) => tour.name)
     }, [inputValues])
 
 
@@ -70,15 +68,17 @@ const SelectTour = ({}) => {
     };
 
     const handleDone = () => {
-        
+        dispatch(updateActiveTour({id: tour.id, status: 'done'}))
+        window.location.reload();
     }
 
     const handleStart = () => {
-
+        dispatch(updateActiveTour({id: tour.id, status: 'now'}))
+        window.location.reload();
     }
 
     const handleReserve = () => {
-        
+        dispatch(createRequest({id_client: id, id_tour: tour.id}))
     }
 
     return (
@@ -96,12 +96,12 @@ const SelectTour = ({}) => {
                             {tour.date_start && 
                                 (role == 'guide' ? (
                                     <>
-                                        <ButtonChange text={"start"} onClick={handleStart} />
-                                        <ButtonChange text={"done"} onClick={handleDone} />
+                                        {tour.status == 'reserve' && <ButtonChange text={"start"} onClick={handleStart} />}
+                                        {tour.status == 'now' && <ButtonChange text={"done"} onClick={handleDone} />}
                                     </>
                                 ) : (
                                     <>
-                                        <ButtonChange text={"reserve"} onClick={handleReserve} />
+                                        {!tour.id_client && <ButtonChange text={"reserve"} onClick={handleReserve} />}
                                     </>
                                 ))}
                             {tour.date_start && <p className="text_mln_f16_l16">{new Date(tour.date_start).toLocaleDateString('ru-RU')}</p>}

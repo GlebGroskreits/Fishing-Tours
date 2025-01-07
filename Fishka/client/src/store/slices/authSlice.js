@@ -15,16 +15,36 @@ export const registration = createAsyncThunk('auth/registration', async ({regist
     return response; 
 });
 
-    export const logout = createAsyncThunk('auth/logout', async () => {
-        await AuthService.logout();
-        localStorage.removeItem('token');
-    });
-
 export const checkAuth = createAsyncThunk('auth/refresh', async () =>{
     const response = await axios.get(`${API_URL}/user/refresh`, {withCredentials: true})
     localStorage.setItem('token', response.data.accessToken);
     return response.data; 
 });
+
+export const getUser = createAsyncThunk('auth/getUser', async ({id_user}) => {
+    const response = await AuthService.getUser(id_user);
+
+    return response;
+});
+
+export const getRequest = createAsyncThunk('auth/getRequest', async ({id_client}) => {
+    const response = await AuthService.getRequest(id_client);
+
+    return response;
+});
+
+export const getRequestGuide = createAsyncThunk('auth/getRequestGuide', async ({id_guide}) => {
+    const response = await AuthService.getRequestGuide(id_guide);
+
+    return response;
+});
+
+export const changePersonal = createAsyncThunk('auth/changePersonal', async ({personalData}) => {
+    const response = await AuthService.changePersonal(personalData);
+
+    return response;
+});
+
 
 const authSlice = createSlice({
     name: 'auth', 
@@ -33,6 +53,8 @@ const authSlice = createSlice({
             id: '',
             role: '',
         },
+        myUser: null,
+        myTour: null,
         isAuth: false,
         isLoading: false,  
     },
@@ -54,13 +76,21 @@ const authSlice = createSlice({
                 state.isAuth = true;
                 state.user = action.payload.user;  
             })
+            .addCase(getUser.fulfilled, (state, action) => {  
+                state.myUser = action.payload;  
+            })
+            .addCase(getRequest.fulfilled, (state, action) => {  
+                state.myTour = action.payload;  
+            })
+            .addCase(getRequestGuide.fulfilled, (state, action) => {  
+                state.myTour = action.payload;  
+            })
             .addCase(registration.fulfilled, (state, action) => {  
                 console.log('check')
             })
-            // .addCase(logout.fulfilled, (state) => {
-            //     state.isAuth = false;
-            //     state.user = { id: '', role: '' }; 
-            // })
+            .addCase(changePersonal.fulfilled, () => {
+                window.location.reload();
+            })
             .addCase(checkAuth.pending, (state, action) => {
                 state.isLoading = true;
             })

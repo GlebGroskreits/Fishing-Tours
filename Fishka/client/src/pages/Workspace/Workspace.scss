@@ -34,6 +34,38 @@
         
     }
 
+    .pi_tool{
+        .paggination{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 3px 0;
+            gap: 10px;
+    
+            .circle {
+                width: 8px;
+                height: 8px;
+                border: 1px solid $text_decoration_black; 
+                border-radius: 50%; 
+                cursor: pointer; 
+                background-color: transparent; 
+                transition: background-color 0.3s, border 0.3s; 
+            }
+            
+            .circle.active {
+                background-color: $text_decoration_black; /* Цвет фона для активного кружочка */
+            }
+        }
+    
+        .paggination.none{
+            display: none;
+        }
+
+        >input{
+            display: none;
+        }
+    }
+
     .pi_pi{
         display: flex;
         flex-direction: column;
@@ -64,6 +96,18 @@
                 height: 160px;
                 box-sizing: border-box;
                 padding-top: 20px;
+                position: relative;
+
+                >P:nth-of-type(3){
+                    position: absolute;
+                    bottom: 25px;;
+                    right: 26px;
+                }
+            }
+
+            >p{
+                margin-top: 40px;
+                color: $text_decoration_black;
             }
         }
     }    

@@ -58,7 +58,8 @@ const SelectDetails = ({}) => {
             <div className="sd_cards">
                 <div className="sd_card">
                     <p className='text_mln_f20_l22'>Guide</p>
-                    <p className='text_mln_f18_l26'>{matchingGuide.name} {matchingGuide.surname}</p>
+                    { matchingGuide && <p className='text_mln_f18_l26'>{matchingGuide.name} {matchingGuide.surname}</p>}
+                    { !matchingGuide && <p className='text_mln_f18_l26'>on Active Tour</p>}      
                 </div>
                 <div className="sd_card">
                     <p className='text_mln_f20_l22'>Cost</p>
@@ -66,11 +67,12 @@ const SelectDetails = ({}) => {
                 </div>
                 <div className="sd_card">
                     <p className='text_mln_f20_l22'>Contact</p>
-                    <p className='text_mln_f18_l26'>{matchingGuide.telephone}</p>
+                    {matchingGuide && <p className='text_mln_f18_l26'>{matchingGuide.telephone}</p>}
+                    {!matchingGuide && <p className='text_mln_f18_l26'>on Active Tour</p>}
                 </div>
             </div>
             <div className="sd_tool">
-                <ButtonChange text={'change'} onClick={handleCreateModal}/>
+                {!tour.date_start && <ButtonChange text={'change'} onClick={handleCreateModal}/>}
             </div>
         </section>
     );
