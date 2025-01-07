@@ -23,11 +23,14 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
-        localStorage.setItem('tourFilters', JSON.stringify({
-            criterion: '',
-            range: '',
-            change: 'active tour',
-        }));
+        const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));
+        if (!savedFilters) {
+            localStorage.setItem('tourFilters', JSON.stringify({
+                criterion: '',
+                range: '',
+                change: 'active tour',
+            }));
+        } 
     })
 
     return (

@@ -22,7 +22,7 @@ const TourSection = ({ bcImage, type }) => {
     const dispatch = useDispatch();
 
     const role = useSelector((state) => state.auth.user.role);
-    const {tours, activeTours} = useSelector((state) => state.tour)
+    const { tours, activeTours } = useSelector((state) => state.tour);
 
     const [selectedOptions, setSelectedOptions] = useState({
         criterion: '',
@@ -35,15 +35,15 @@ const TourSection = ({ bcImage, type }) => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredTours, setFilteredTours] = useState([]);
-    
+
     // Загрузка состояния из локального хранилища
     useEffect(() => {
-        dispatch(getGuide())
+        dispatch(getGuide());
         const savedFilters = JSON.parse(localStorage.getItem('tourFilters'));
         if (savedFilters) {
             setSelectedOptions(savedFilters);
         }
-    }, []);
+    }, [dispatch]);
 
     const handleSelectChange = (value, type) => {
         setSelectedOptions((prev) => ({
@@ -56,13 +56,7 @@ const TourSection = ({ bcImage, type }) => {
         setSearchTerm(event.target.value);
     };
 
-    const handleSearch = () => {
-        // Логика поиска уже реализована в фильтрации
-    };
-
     const handleApply = () => {
-        console.log('Applied filters:', selectedOptions);
-        
         const currentTours = selectedOptions.change === 'tour' ? tours : activeTours;
 
         // Фильтрация
@@ -82,6 +76,7 @@ const TourSection = ({ bcImage, type }) => {
         });
 
         setFilteredTours(sortedTours);
+        setCurrentPage(1); // Сброс текущей страницы при применении фильтров
     };
 
     const handleReset = () => {
@@ -91,19 +86,20 @@ const TourSection = ({ bcImage, type }) => {
             change: 'active tour',
         });
         setSearchTerm(''); // Очищаем поле поиска
-        localStorage.setItem('tourFilters', JSON.stringify(selectedOptions));
+        setFilteredTours([]); // Очищаем фильтры
+        localStorage.removeItem('tourFilters'); // Удаляем сохраненные фильтры
+        setCurrentPage(1); // Сброс текущей страницы
     };
 
     const handleSave = () => {
-        console.log('Saved settings:', selectedOptions);
         localStorage.setItem('tourFilters', JSON.stringify(selectedOptions));
     };
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
-
-    const totalPages = Math.ceil(filteredTours.length / itemsPerPage);
+    const currentItems = filteredTours.length > 0 ? filteredTours.slice(indexOfFirstItem, indexOfLastItem) : (selectedOptions.change === 'tour' ? tours : activeTours).slice(indexOfFirstItem, indexOfLastItem);
+    
+    const totalPages = Math.ceil(filteredTours.length > 0 ? filteredTours.length : (selectedOptions.change === 'tour' ? tours.length : activeTours.length) / itemsPerPage);
 
     return (
         <>
@@ -117,22 +113,22 @@ const TourSection = ({ bcImage, type }) => {
                     <div className='tfb_name'>
                         <p className='text_mnt_f26_l26'>Filter</p>
                         <div className='tfb_select'>
-                        <CustomSelect 
-                            placeholder={'criterion'} 
-                            options={options.criterion} 
-                            onSelectChange={(value) => handleSelectChange(value, 'criterion')}
-                        />
-                        <CustomSelect 
-                            placeholder={'range'} 
-                            options={options.range} 
-                            onSelectChange={(value) => handleSelectChange(value, 'range')}
-                        />
-                        {role == 'guide' && 
                             <CustomSelect 
-                                placeholder={'change'} 
-                                options={options.change}  
-                                onSelectChange={(value) => handleSelectChange(value, 'change')}
-                            />}
+                                placeholder={'criterion'} 
+                                options={options.criterion} 
+                                onSelectChange={(value) => handleSelectChange(value, 'criterion')}
+                            />
+                            <CustomSelect 
+                                placeholder={'range'} 
+                                options={options.range} 
+                                onSelectChange={(value) => handleSelectChange(value, 'range')}
+                            />
+                            {role === 'guide' && 
+                                <CustomSelect 
+                                    placeholder={'change'} 
+                                    options={options.change}  
+                                    onSelectChange={(value) => handleSelectChange(value, 'change')}
+                                />}
                         </div>
                     </div>
                     <div className="tfb_change">
@@ -149,7 +145,7 @@ const TourSection = ({ bcImage, type }) => {
                         </div>
                     </div>
                     <div className="tfb_change">
-                        <ButtonChange text={"apply"} onClick={handleSearch} />
+                        <ButtonChange text={"apply"} onClick={handleApply} />
                         <ButtonChange text={"reset"} onClick={handleReset} />
                     </div>
                 </div>
@@ -159,10 +155,10 @@ const TourSection = ({ bcImage, type }) => {
                     {currentItems.map((tour, index) => (
                         <CardTour key={index} tour={tour}/>
                     ))}
-                    {role == 'guide' && <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>}
+                    {role === 'guide' && <CardCreateTour type={type} change={selectedOptions.change} tours={tours}/>}
                 </div>
-                <div className={`${totalPages > currentItems.length ? 'paggination' : 'paggination none'}`}>
-                    {totalPages > currentItems.length && [...Array(totalPages)].map((_, index) => (
+                <div className={`${totalPages > 1 ? 'paggination' : 'paggination none'}`}>
+                    {totalPages > 1 && [...Array(totalPages)].map((_, index) => (
                         <div
                             key={index}
                             className={`circle ${currentPage === index + 1 ? 'active' : ''}`}
