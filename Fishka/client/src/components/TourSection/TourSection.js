@@ -5,6 +5,9 @@ import { ButtonChange, LinkSection, CustomSelect, CardTour, CardCreateTour } fro
 import { TourBC } from '../../utils/images';
 import { Download } from '../../utils/icons';
 import { getGuide } from '../../store/slices/guideSlice';
+import { jsPDF } from 'jspdf';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 const pageLink = {
     link: '/review',
@@ -101,6 +104,52 @@ const TourSection = ({ bcImage, type }) => {
     
     const totalPages = Math.ceil(filteredTours.length > 0 ? filteredTours.length : (selectedOptions.change === 'tour' ? tours.length : activeTours.length) / itemsPerPage);
 
+    const handleDownloadExcel = () => {
+        const toursToDownload = filteredTours.length > 0 ? filteredTours : (selectedOptions.change === 'tour' ? tours : activeTours);
+        const data = toursToDownload.map(tour => ({
+            Name: tour.name,
+            Duration: tour.duration,
+            Description: tour.description, // Добавляем описание
+            Type: tour.type, // Добавляем тип
+            Cost: tour.cost_people, // Добавляем стоимость по людям
+            Date_start: tour.date_start ? tour.date_start : undefined,
+            Status: tour.status ? tour.status : undefined
+        }));
+    
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Tours");
+    
+        // Устанавливаем выравнивание по центру (горизонтально и вертикально)
+        const range = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                const cell = worksheet[XLSX.utils.encode_cell({ r: R, c: C })];
+                if (cell) {
+                    cell.s = {
+                        alignment: { vertical: "center", horizontal: "center" },
+                        wrapText: true // Разрешаем перенос текста
+                    };
+                }
+            }
+        }
+    
+        // Установка ширины столбцов
+        worksheet['!cols'] = [
+            { wpx: 150 }, // Width for Name
+            { wpx: 50 }, // Width for Duration
+            { wpx: 500 }, // Max width for Description
+            { wpx: 80 }, // Width for Type
+            { wpx: 80 }, //...
+            { wpx: 150 },
+            { wpx: 80 },  
+        ];
+    
+        const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+        saveAs(blob, "tour_report.xlsx");
+    };
+
     return (
         <>
             <section className="bc_image">
@@ -168,9 +217,9 @@ const TourSection = ({ bcImage, type }) => {
                 </div>
             </section>
             <section className='tour_report'>
-                <div className="tr_container">
-                    <img src={Download} alt="download" />
-                    <p className="text_mln_f26_l26">download tour</p>
+                <div className="tr_container" >
+                    <img src={Download} alt="download" onClick={handleDownloadExcel}/>
+                    <p className="text_mln_f26_l26" onClick={handleDownloadExcel}>download tour</p>
                 </div>
             </section>
             <LinkSection text={pageLink.header} page={pageLink.page} link={pageLink.link} />
@@ -179,3 +228,4 @@ const TourSection = ({ bcImage, type }) => {
 };
 
 export default TourSection;
+

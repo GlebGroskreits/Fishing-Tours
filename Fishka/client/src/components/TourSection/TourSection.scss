@@ -193,10 +193,12 @@
         >img{
             height: 22px;
             width: 22px;
+            cursor: pointer;
         }
 
         >p{
             color: $text_decoration_black;
+            cursor: pointer;
         }
     }
 }
